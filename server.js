@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve the main game page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'complete_games_5k.html'));
+    res.sendFile(path.join(__dirname, 'enhanced_word_games.html'));
 });
 
 // Health check endpoint
@@ -29,7 +29,7 @@ app.get('/api/stats', (req, res) => {
     res.json({
         totalWords: 4963,
         gameModes: ['Classic', 'Speed Challenge', 'Quiz Master', 'Word Battle', 'Endurance Mode'],
-        features: ['Mobile Responsive', 'Multiple Choice', 'Real-time Scoring', 'Multiplayer Battle', 'Progressive Difficulty', 'No Word Repetition', 'Global Shuffling']
+        features: ['Mobile Responsive', 'Multiple Choice', 'Real-time Scoring', 'Multiplayer Battle', 'Progressive Difficulty', 'No Word Repetition', 'Global Shuffling', 'Detailed Explanations', 'Etymology & Origins', 'Synonyms & Antonyms', 'Example Sentences']
     });
 });
 

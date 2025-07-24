@@ -15,7 +15,9 @@ def parse_word_entry(entry_text):
         'word': '',
         'meaning': '',
         'synonyms': [],
-        'antonyms': []
+        'antonyms': [],
+        'sentences': [],
+        'origin': ''
     }
     
     current_section = None
@@ -40,13 +42,21 @@ def parse_word_entry(entry_text):
             current_section = 'synonyms'
         elif line == 'Antonyms:':
             current_section = 'antonyms'
-        elif line.startswith('Sentences:'):
-            current_section = None  # Skip sentences for games
+        elif line == 'Sentences:':
+            current_section = 'sentences'
         elif line.startswith('Origin:'):
-            current_section = None  # Skip origin for games
+            current_section = 'origin'
+            if len(line) > 7:
+                word_data['origin'] = line[7:].strip()
         elif line and current_section:
             clean_line = re.sub(r'^\d+\.\s*', '', line).strip()
-            if clean_line and current_section in ['synonyms', 'antonyms']:
+            
+            if current_section == 'origin':
+                if word_data['origin']:
+                    word_data['origin'] += ' ' + clean_line
+                else:
+                    word_data['origin'] = clean_line
+            elif clean_line and current_section in ['synonyms', 'antonyms', 'sentences']:
                 word_data[current_section].append(clean_line)
     
     return word_data
@@ -81,6 +91,8 @@ def main():
                     word_data['meaning'] = word_data['meaning'].strip()
                     word_data['synonyms'] = word_data['synonyms'][:5]  # Limit to 5
                     word_data['antonyms'] = word_data['antonyms'][:5]   # Limit to 5
+                    word_data['sentences'] = word_data['sentences'][:3]  # Limit to 3
+                    word_data['origin'] = word_data['origin'].strip()
                     words_data.append(word_data)
                     
                     if len(words_data) % 500 == 0:
