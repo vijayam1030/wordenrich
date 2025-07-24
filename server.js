@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve the main game page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'complete_games.html'));
+    res.sendFile(path.join(__dirname, 'complete_games_5k.html'));
 });
 
 // Health check endpoint
@@ -27,9 +27,9 @@ app.get('/health', (req, res) => {
 // API endpoint for game statistics (optional future feature)
 app.get('/api/stats', (req, res) => {
     res.json({
-        totalWords: 20,
+        totalWords: 4963,
         gameModes: ['Classic', 'Speed Challenge', 'Quiz Master', 'Word Battle', 'Endurance Mode'],
-        features: ['Mobile Responsive', 'Multiple Choice', 'Real-time Scoring', 'Multiplayer Battle', 'Progressive Difficulty']
+        features: ['Mobile Responsive', 'Multiple Choice', 'Real-time Scoring', 'Multiplayer Battle', 'Progressive Difficulty', 'No Word Repetition', 'Global Shuffling']
     });
 });
 
