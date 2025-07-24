@@ -241,6 +241,46 @@ def create_game_html(words_data):
             font-size: 1.1em;
         }}
         
+        .multiple-choice-clue {{
+            background: linear-gradient(135deg, #e8f5e8 0%, #c6f6d5 100%);
+            color: #22543d;
+            border: 2px solid #38a169;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: bold;
+        }}
+        
+        .choice-options {{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }}
+        
+        .choice-option {{
+            background: #38a169;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            border: 2px solid transparent;
+        }}
+        
+        .choice-option:hover {{
+            background: #2f855a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+        }}
+        
+        .choice-option.selected {{
+            background: #2f855a;
+            border-color: #22543d;
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.4);
+        }}
+        
         .input-area {{
             margin: 30px 0;
         }}
@@ -594,21 +634,90 @@ def create_game_html(words_data):
             const clue = document.createElement('div');
             clue.className = 'clue';
             
-            const hints = [
-                '💡 Hint ' + hintsUsed + ': The word has ' + currentWord.word.length + ' letters',
-                '💡 Hint ' + hintsUsed + ': It starts with "' + currentWord.word[0].toUpperCase() + '"',
-                '💡 Hint ' + hintsUsed + ': Synonyms include: ' + currentWord.synonyms.slice(0, 2).join(', '),
-                '💡 Hint ' + hintsUsed + ': It\\'s NOT the same as: ' + currentWord.antonyms.slice(0, 2).join(', '),
-                '💡 Hint ' + hintsUsed + ': ' + currentWord.origin.substring(0, 50) + '...'
-            ];
+            // Generate multiple choice options for the final hint
+            let multipleChoiceOptions = [];
+            if (hintsUsed === 6) {{
+                if (gameMode === 'word-to-meaning') {{
+                    // For word-to-meaning: show 4 different meanings
+                    const wrongMeanings = gameData
+                        .filter(w => w.word !== currentWord.word && w.meaning.length > 10)
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 3)
+                        .map(w => w.meaning);
+                    
+                    multipleChoiceOptions = [...wrongMeanings, currentWord.meaning].sort(() => Math.random() - 0.5);
+                }} else {{
+                    // For other modes: show 4 different words
+                    const wrongOptions = gameData
+                        .filter(w => w.word !== currentWord.word && w.word.length >= currentWord.word.length - 2 && w.word.length <= currentWord.word.length + 2)
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 3)
+                        .map(w => w.word);
+                    
+                    multipleChoiceOptions = [...wrongOptions, currentWord.word].sort(() => Math.random() - 0.5);
+                }}
+            }}
+            
+            let hints = [];
+            
+            if (gameMode === 'word-to-meaning') {{
+                // For word-to-meaning: don't reveal the word in hints
+                hints = [
+                    '💡 Hint ' + hintsUsed + ': This definition has ' + currentWord.meaning.split(' ').length + ' words',
+                    '💡 Hint ' + hintsUsed + ': Think about actions related to: ' + currentWord.synonyms.slice(0, 2).join(', '),
+                    '💡 Hint ' + hintsUsed + ': It\\'s the opposite of: ' + currentWord.antonyms.slice(0, 2).join(', '),
+                    '💡 Hint ' + hintsUsed + ': This word relates to: ' + currentWord.synonyms.slice(0, 3).join(', '),
+                    '💡 Hint ' + hintsUsed + ': Etymology clue: ' + (currentWord.origin ? currentWord.origin.substring(0, 40) + '...' : 'Ancient origins'),
+                    '🎯 Final Hint: Choose one of these options: ' + multipleChoiceOptions.join(' | ')
+                ];
+            }} else {{
+                // For other modes: use original hints with word details
+                hints = [
+                    '💡 Hint ' + hintsUsed + ': The word has ' + currentWord.word.length + ' letters',
+                    '💡 Hint ' + hintsUsed + ': It starts with "' + currentWord.word[0].toUpperCase() + '"',
+                    '💡 Hint ' + hintsUsed + ': Synonyms include: ' + currentWord.synonyms.slice(0, 2).join(', '),
+                    '💡 Hint ' + hintsUsed + ': It\\'s NOT the same as: ' + currentWord.antonyms.slice(0, 2).join(', '),
+                    '💡 Hint ' + hintsUsed + ': ' + currentWord.origin.substring(0, 50) + '...',
+                    '🎯 Final Hint: Choose one of these options: ' + multipleChoiceOptions.join(' | ')
+                ];
+            }}
             
             if (hintsUsed <= hints.length) {{
-                clue.textContent = hints[hintsUsed - 1];
+                if (hintsUsed === 6) {{
+                    // Special styling for multiple choice hint
+                    clue.className = 'clue multiple-choice-clue';
+                    clue.innerHTML = '🎯 Final Hint: Choose the correct word:';
+                    
+                    // Create clickable options
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'choice-options';
+                    
+                    multipleChoiceOptions.forEach(option => {{
+                        const optionDiv = document.createElement('div');
+                        optionDiv.className = 'choice-option';
+                        optionDiv.textContent = option;
+                        optionDiv.onclick = function() {{
+                            answerInput.value = option;
+                            answerInput.focus();
+                            // Trigger input event to enable submit button
+                            answerInput.dispatchEvent(new Event('input'));
+                            // Highlight selected option
+                            document.querySelectorAll('.choice-option').forEach(opt => opt.classList.remove('selected'));
+                            optionDiv.classList.add('selected');
+                        }};
+                        optionsDiv.appendChild(optionDiv);
+                    }});
+                    
+                    clue.appendChild(optionsDiv);
+                }} else {{
+                    clue.textContent = hints[hintsUsed - 1];
+                }}
+                
                 cluesArea.appendChild(clue);
                 clue.classList.add('bounce');
             }}
             
-            if (hintsUsed >= 3) {{
+            if (hintsUsed >= 6) {{
                 hintBtn.disabled = true;
             }}
         }}
@@ -617,10 +726,32 @@ def create_game_html(words_data):
             const userAnswer = answerInput.value.trim().toLowerCase();
             let isCorrect = false;
             
+            // Debug logging
+            console.log('Game Mode:', gameMode);
+            console.log('User Answer:', userAnswer);
+            console.log('Correct Answer:', gameMode === 'word-to-meaning' ? currentWord.meaning : currentWord.word);
+            
             switch(gameMode) {{
                 case 'word-to-meaning':
-                    isCorrect = currentWord.meaning.toLowerCase().includes(userAnswer) || 
-                               currentWord.synonyms.some(syn => syn.toLowerCase() === userAnswer);
+                    const meaningLower = currentWord.meaning.toLowerCase();
+                    
+                    // Check if user typed the word instead of meaning
+                    if (userAnswer === currentWord.word.toLowerCase()) {{
+                        // Special feedback for typing the word instead of meaning
+                        showSpecialFeedback('word-instead-of-meaning');
+                        return;
+                    }}
+                    
+                    // Check for correct answers (handle periods and exact matches)
+                    const cleanMeaning = meaningLower.replace(/[.,;!?]/g, '').trim();
+                    const cleanUserAnswer = userAnswer.replace(/[.,;!?]/g, '').trim();
+                    
+                    isCorrect = meaningLower === userAnswer ||
+                               cleanMeaning === cleanUserAnswer ||
+                               meaningLower.includes(userAnswer) || 
+                               cleanMeaning.includes(cleanUserAnswer) ||
+                               currentWord.synonyms.some(syn => syn.toLowerCase() === userAnswer) ||
+                               (userAnswer.length >= 3 && meaningLower.split(' ').some(word => word.replace(/[.,;!?]/g, '') === userAnswer));
                     break;
                 case 'meaning-to-word':
                 case 'sentence-clue':
@@ -628,6 +759,8 @@ def create_game_html(words_data):
                     isCorrect = currentWord.word.toLowerCase() === userAnswer;
                     break;
             }}
+            
+            console.log('Is Correct:', isCorrect);
             
             totalQuestions++;
             
@@ -643,6 +776,23 @@ def create_game_html(words_data):
             
             updateScores();
             disableInputs();
+        }}
+        
+        function showSpecialFeedback(type) {{
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback incorrect';
+            
+            if (type === 'word-instead-of-meaning') {{
+                feedback.innerHTML = '🤔 Close! You typed the word "' + currentWord.word + '" but I need its <strong>meaning</strong>!<br>💡 Try: "' + currentWord.meaning + '"';
+            }}
+            
+            feedbackArea.innerHTML = '';
+            feedbackArea.appendChild(feedback);
+            
+            // Don't count as wrong answer, just give them another chance
+            setTimeout(() => {{
+                feedback.innerHTML += '<br><br>🎯 Try again! What does "' + currentWord.word + '" mean?';
+            }}, 2000);
         }}
         
         function showFeedback(correct) {{
