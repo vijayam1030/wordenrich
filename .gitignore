@@ -229,7 +229,7 @@ data/
 datasets/
 *.csv
 *.json
-*.txt
+*backup.txt
 *.tsv
 *.parquet
 

@@ -1,0 +1,27 @@
+Word: abase;To lower in position
+Meaning: estimation
+
+Synonyms:
+
+	1.	synonym1_abase
+	2.	synonym2_abase
+	3.	synonym3_abase
+	4.	synonym4_abase
+	5.	synonym5_abase
+
+Antonyms:
+
+	1.	antonym1_abase
+	2.	antonym2_abase
+	3.	antonym3_abase
+	4.	antonym4_abase
+	5.	antonym5_abase
+
+Sentences:
+
+	1.	This is the first sentence for abase;
+	2.	Here is the second sentence using abase;
+	3.	Finally, a third sentence with abase;
+
+Origin:
+The word abase;To lower in position originates from [language] and evolved to mean [explanation].
