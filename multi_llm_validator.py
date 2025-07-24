@@ -48,7 +48,7 @@ class MultiLLMValidator:
     def detect_available_models(self) -> Dict[str, dict]:
         """Detect available Ollama models and their characteristics."""
         try:
-            result = subprocess.run(["ollama", "list"], capture_output=True, text=True, timeout=10)
+            result = subprocess.run(["ollama", "list"], capture_output=True, text=True, timeout=10, encoding='utf-8', errors='replace')
             if result.returncode != 0:
                 print("⚠️  Ollama not available, falling back to single model")
                 return {"llama3.1:8b": {"size": "8B", "speed": "medium", "quality": "high"}}
@@ -125,7 +125,9 @@ class MultiLLMValidator:
                 input=prompt,
                 text=True,
                 capture_output=True,
-                timeout=timeout
+                timeout=timeout,
+                encoding='utf-8',
+                errors='replace'
             )
             response_time = time.time() - start_time
             
