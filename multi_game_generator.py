@@ -570,24 +570,229 @@ def create_multi_game_html(words_data):
         
         @media (max-width: 768px) {{
             .game-container {{
-                padding: 10px;
+                padding: 5px;
+                max-width: 100%;
             }}
             
-            .game-header, .tab-content {{
-                padding: 20px;
+            .game-header {{
+                padding: 15px;
+                margin-bottom: 15px;
+            }}
+            
+            .tab-content {{
+                padding: 15px;
             }}
             
             .game-title {{
                 font-size: 2em;
             }}
             
+            .game-subtitle {{
+                font-size: 1em;
+            }}
+            
             .tab-nav {{
-                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+            }}
+            
+            .tab-btn {{
+                flex: 1;
+                min-width: 120px;
+                margin: 2px;
+                padding: 15px 10px;
+                font-size: 0.9em;
+            }}
+            
+            .tab-icon {{
+                font-size: 1.1em;
+            }}
+            
+            .question-card {{
+                padding: 20px;
+                font-size: 1.1em;
+            }}
+            
+            .choice-option {{
+                padding: 15px;
+                margin: 8px 0;
+                font-size: 1em;
+                line-height: 1.4;
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
             }}
             
             .btn-group {{
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }}
+            
+            .game-btn {{
+                padding: 15px 20px;
+                font-size: 1.1em;
+                min-width: 120px;
+            }}
+            
+            .score-board {{
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 15px;
+            }}
+            
+            .score-item {{
+                flex: 1;
+                min-width: 80px;
+            }}
+            
+            .game-input {{
+                width: 100%;
+                max-width: none;
+                font-size: 1.1em;
+                padding: 15px;
+            }}
+            
+            .difficulty-selector {{
+                flex-wrap: wrap;
+                gap: 8px;
+            }}
+            
+            .difficulty-btn {{
+                flex: 1;
+                min-width: 80px;
+                padding: 12px 15px;
+            }}
+            
+            .timer-display {{
+                font-size: 1.5em;
+            }}
+            
+            .memory-grid {{
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 8px !important;
+            }}
+            
+            .memory-card {{
+                min-height: 70px !important;
+                font-size: 0.8em !important;
+            }}
+            
+            /* Battle mode mobile layout */
+            .battle-options-grid {{
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }}
+            
+            /* Speed mode mobile layout */
+            .speed-options {{
+                gap: 6px !important;
+            }}
+            
+            .feedback {{
+                font-size: 1em;
+                padding: 15px;
+            }}
+            
+            .answer-reveal {{
+                padding: 15px;
+                font-size: 0.9em;
+            }}
+            
+            .detail-section {{
+                margin: 8px 0;
+            }}
+            
+            .synonym-tag, .antonym-tag {{
+                padding: 4px 8px;
+                font-size: 0.8em;
+                margin: 2px;
+            }}
+        }}
+        
+        @media (max-width: 480px) {{
+            .game-title {{
+                font-size: 1.5em;
+            }}
+            
+            .tab-btn {{
+                flex-basis: 48%;
+                font-size: 0.8em;
+                padding: 12px 8px;
+            }}
+            
+            .tab-icon {{
+                font-size: 1em;
+            }}
+            
+            .question-card {{
+                font-size: 1em;
+                padding: 15px;
+            }}
+            
+            .choice-option {{
+                font-size: 0.9em;
+                padding: 12px;
+                min-height: 50px;
+            }}
+            
+            .game-btn {{
+                font-size: 1em;
+                padding: 12px 15px;
+                min-width: 100px;
+            }}
+            
+            .score-number {{
+                font-size: 1.5em;
+            }}
+            
+            .memory-grid {{
+                grid-template-columns: repeat(3, 1fr) !important;
+            }}
+        }}
+        
+        /* Touch-friendly improvements */
+        .choice-option:hover {{
+            transform: scale(1.02);
+        }}
+        
+        .choice-option:active {{
+            transform: scale(0.98);
+        }}
+        
+        .game-btn:active {{
+            transform: scale(0.95);
+        }}
+        
+        .tab-btn:active {{
+            transform: scale(0.95);
+        }}
+        
+        /* Prevent text selection on mobile */
+        .choice-option, .game-btn, .tab-btn {{
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }}
+        
+        /* Improve touch targets */
+        @media (hover: none) and (pointer: coarse) {{
+            .choice-option {{
+                min-height: 60px;
+                padding: 15px;
+            }}
+            
+            .game-btn {{
+                min-height: 50px;
+                padding: 15px 20px;
+            }}
+            
+            .tab-btn {{
+                min-height: 60px;
+                padding: 15px;
             }}
         }}
     </style>
@@ -1481,6 +1686,7 @@ def create_multi_game_html(words_data):
             optionsArea.innerHTML = '';
             
             const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'speed-options';
             optionsContainer.style.cssText = 'display: flex; flex-direction: column; gap: 8px; margin: 15px 0;';
             
             options.forEach((option, index) => {{
@@ -2064,6 +2270,7 @@ def create_multi_game_html(words_data):
             optionsArea.innerHTML = '';
             
             const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'battle-options-grid';
             optionsContainer.style.cssText = 'display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0;';
             
             options.forEach((option, index) => {{

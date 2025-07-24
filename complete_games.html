@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Complete Word Games Collection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        .game-header {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .game-title {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .game-subtitle {
+            font-size: 1.1em;
+            color: #666;
+        }
+        
+        .tab-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .tab-nav {
+            display: flex;
+            background: #f8f9fa;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-family: inherit;
+            user-select: none;
+        }
+        
+        .tab-btn:hover { background: #e9ecef; color: #333; }
+        .tab-btn.active { color: #667eea; background: white; border-bottom-color: #667eea; }
+        .tab-btn:active { transform: scale(0.95); }
+        
+        .tab-icon { font-size: 1.1em; margin-bottom: 2px; display: block; }
+        .tab-label { font-size: 0.75em; display: block; }
+        
+        .tab-content { display: none; padding: 20px; }
+        .tab-content.active { display: block; }
+        
+        .game-description {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c6f6d5 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #38a169;
+        }
+        
+        .question-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        .choice-option {
+            background: #38a169;
+            color: white;
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+            font-size: 1em;
+            line-height: 1.4;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+        
+        .choice-option:hover { background: #2f855a; transform: translateY(-2px); }
+        .choice-option:active { transform: scale(0.98); }
+        .choice-option.selected { background: #2f855a; border-color: #22543d; }
+        
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .score-item { text-align: center; flex: 1; min-width: 70px; }
+        .score-number { font-size: 1.6em; font-weight: bold; color: #667eea; }
+        .score-label { color: #666; font-size: 0.8em; }
+        
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .game-btn {
+            padding: 10px 18px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            min-width: 110px;
+            user-select: none;
+        }
+        
+        .game-btn:active { transform: scale(0.95); }
+        .primary-btn { background: #667eea; color: white; }
+        .primary-btn:hover { background: #5a67d8; }
+        
+        .feedback {
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .correct { background: #c6f6d5; color: #22543d; border: 2px solid #38a169; }
+        .incorrect { background: #fed7d7; color: #742a2a; border: 2px solid #e53e3e; }
+        
+        .timer-display {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: #48bb78;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 8px;
+            margin: 15px 0;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .battle-area {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .player-card {
+            flex: 1;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .player-card.active {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+        
+        .player-name {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .endurance-stats {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .game-container { padding: 5px; }
+            .game-header { padding: 15px; margin-bottom: 15px; }
+            .tab-content { padding: 15px; }
+            .game-title { font-size: 2em; }
+            .tab-btn { padding: 10px 6px; font-size: 0.75em; min-width: 80px; }
+            .question-card { padding: 15px; font-size: 1em; }
+            .choice-option { padding: 12px; font-size: 0.9em; min-height: 50px; }
+            .game-btn { padding: 10px 15px; min-width: 100px; font-size: 0.85em; }
+            .battle-area { flex-direction: column; }
+        }
+        
+        @media (max-width: 480px) {
+            .game-title { font-size: 1.5em; }
+            .tab-btn { flex-basis: 32%; margin: 1px; }
+        }
+        
+        @media (hover: none) and (pointer: coarse) {
+            .choice-option { min-height: 60px; padding: 15px; }
+            .game-btn { min-height: 45px; padding: 12px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title">🎮 Complete Word Games</h1>
+            <p class="game-subtitle">Five Exciting Vocabulary Game Modes</p>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="classic">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-label">Classic</span>
+                </button>
+                <button class="tab-btn" data-tab="speed">
+                    <span class="tab-icon">⚡</span>
+                    <span class="tab-label">Speed</span>
+                </button>
+                <button class="tab-btn" data-tab="quiz">
+                    <span class="tab-icon">🧠</span>
+                    <span class="tab-label">Quiz</span>
+                </button>
+                <button class="tab-btn" data-tab="battle">
+                    <span class="tab-icon">⚔️</span>
+                    <span class="tab-label">Battle</span>
+                </button>
+                <button class="tab-btn" data-tab="endurance">
+                    <span class="tab-icon">🏃</span>
+                    <span class="tab-label">Endure</span>
+                </button>
+            </div>
+            
+            <!-- Classic Mode -->
+            <div class="tab-content active" id="classic-tab">
+                <div class="game-description">
+                    <h3>📚 Classic Word Game</h3>
+                    <p>Multiple choice vocabulary questions with instant feedback.</p>
+                </div>
+                
+                <div class="score-board">
+                    <div class="score-item">
+                        <div class="score-number" id="classic-correct">0</div>
+                        <div class="score-label">Correct</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-number" id="classic-total">0</div>
+                        <div class="score-label">Total</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-number" id="classic-streak">0</div>
+                        <div class="score-label">Streak</div>
+                    </div>
+                </div>
+                
+                <div class="question-card" id="classic-question">
+                    Click "New Question" to start playing!
+                </div>
+                
+                <div id="classic-options-area"></div>
+                
+                <div class="btn-group">
+                    <button class="game-btn primary-btn" id="classic-submit" disabled>Submit Answer</button>
+                    <button class="game-btn primary-btn" id="classic-new">New Question 🎲</button>
+                </div>
+                
+                <div id="classic-feedback"></div>
+            </div>
+            
+            <!-- Speed Challenge -->
+            <div class="tab-content" id="speed-tab">
+                <div class="game-description">
+                    <h3>⚡ Speed Challenge</h3>
+                    <p>Answer as many questions as possible in 60 seconds!</p>
+                </div>
+                
+                <div class="timer-display" id="speed-timer">60</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="speed-progress" style="width: 100%"></div>
+                </div>
+                
+                <div class="score-board">
+                    <div class="score-item">
+                        <div class="score-number" id="speed-correct">0</div>
+                        <div class="score-label">Correct</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-number" id="speed-total">0</div>
+                        <div class="score-label">Total</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-number" id="speed-wpm">0</div>
+                        <div class="score-label">WPM</div>
+                    </div>
+                </div>
+                
+                <div class="question-card" id="speed-question">
+                    Click "Start Speed Challenge" to begin!
+                </div>
+                
+                <div id="speed-options-area"></div>
+                
+                <div class="btn-group">
+                    <button class="game-btn primary-btn" id="speed-start">Start Challenge ⚡</button>
+                </div>
+                
+                <div id="speed-feedback"></div>
+            </div>
+            
+            <!-- Quiz Mode -->
+            <div class="tab-content" id="quiz-tab">
+                <div class="game-description">
+                    <h3>🧠 Quiz Master</h3>
+                    <p>Take a 10-question vocabulary test with letter grades.</p>
+                </div>
+                
+                <div class="score-board">
+                    <div class="score-item">
+                        <div class="score-number" id="quiz-progress">0/10</div>
+                        <div class="score-label">Progress</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-number" id="quiz-score">0%</div>
+                        <div class="score-label">Score</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-number" id="quiz-grade">-</div>
+                        <div class="score-label">Grade</div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="quiz-progress-bar" style="width: 0%"></div>
+                </div>
+                
+                <div class="question-card" id="quiz-question">
+                    Click "Start Quiz" to begin!
+                </div>
+                
+                <div id="quiz-options-area"></div>
+                
+                <div class="btn-group">
+                    <button class="game-btn primary-btn" id="quiz-start">Start Quiz 🧠</button>
+                    <button class="game-btn primary-btn" id="quiz-next" disabled>Next Question →</button>
+                </div>
+                
+                <div id="quiz-feedback"></div>
+            </div>
+            
+            <!-- Word Battle -->
+            <div class="tab-content" id="battle-tab">
+                <div class="game-description">
+                    <h3>⚔️ Word Battle</h3>
+                    <p>Two-player word competition! First to 5 wins takes the victory.</p>
+                </div>
+                
+                <div class="battle-area">
+                    <div class="player-card active" id="player1-card">
+                        <div class="player-name">Player 1</div>
+                        <div class="score-number" id="battle-p1-score">0</div>
+                    </div>
+                    <div class="player-card" id="player2-card">
+                        <div class="player-name">Player 2</div>
+                        <div class="score-number" id="battle-p2-score">0</div>
+                    </div>
+                </div>
+                
+                <div class="question-card" id="battle-question">
+                    Click "Start Battle" to begin the word war!
+                </div>
+                
+                <div id="battle-options-area"></div>
+                
+                <div class="btn-group">
+                    <button class="game-btn primary-btn" id="battle-start">Start Battle ⚔️</button>
+                    <button class="game-btn primary-btn" id="battle-reset">Reset Game 🔄</button>
+                </div>
+                
+                <div id="battle-feedback"></div>
+            </div>
+            
+            <!-- Endurance Mode -->
+            <div class="tab-content" id="endurance-tab">
+                <div class="game-description">
+                    <h3>🏃 Endurance Mode</h3>
+                    <p>How long can you survive? Questions get harder as you progress!</p>
+                </div>
+                
+                <div class="endurance-stats">
+                    <div class="stat-row">
+                        <span>Level:</span>
+                        <span id="endurance-level">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Lives:</span>
+                        <span id="endurance-lives">❤️❤️❤️</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Score:</span>
+                        <span id="endurance-score">0</span>
+                    </div>
+                </div>
+                
+                <div class="question-card" id="endurance-question">
+                    Click "Start Endurance" to test your limits!
+                </div>
+                
+                <div id="endurance-options-area"></div>
+                
+                <div class="btn-group">
+                    <button class="game-btn primary-btn" id="endurance-start">Start Endurance 🏃</button>
+                    <button class="game-btn primary-btn" id="endurance-restart">Restart 🔄</button>
+                </div>
+                
+                <div id="endurance-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced vocabulary data
+        const gameData = [
+            {word: "abase", meaning: "To lower in position, estimation, or the like; degrade.", synonyms: ["debase", "demean", "degrade", "humble", "demote"], antonyms: ["elevate", "exalt", "ennoble", "dignify", "promote"]},
+            {word: "bestride", meaning: "To get or sit upon astride, as a horse.", synonyms: ["mount", "ride", "straddle"], antonyms: ["descend", "dismount"]},
+            {word: "congenial", meaning: "Having kindred character or tastes.", synonyms: ["amicable", "affable", "convivial", "genial", "sociable"], antonyms: ["aloof", "disagreeable", "gruff", "inhospitable", "standoffish"]},
+            {word: "deign", meaning: "To think fit or in accordance with one's dignity.", synonyms: ["condescend", "dignify", "esteem"], antonyms: ["ignore", "disregard"]},
+            {word: "rectify", meaning: "To correct.", synonyms: ["correct", "amend", "fix", "remedy"], antonyms: ["complicate", "exacerbate"]},
+            {word: "pamphlet", meaning: "A brief treatise or essay, usually on a subject of current interest.", synonyms: ["brochure", "leaflet", "booklet"], antonyms: ["novel", "epic"]},
+            {word: "technography", meaning: "The systematic description of technology and technical processes.", synonyms: ["historiography", "industrial archaeology"], antonyms: ["folkloric study", "anecdotal evidence"]},
+            {word: "verbose", meaning: "Using or expressed in more words than are needed.", synonyms: ["wordy", "long-winded", "prolix"], antonyms: ["concise", "brief", "succinct"]},
+            {word: "zenith", meaning: "The time at which something is most powerful or successful.", synonyms: ["peak", "summit", "apex", "climax"], antonyms: ["nadir", "bottom", "low point"]},
+            {word: "quixotic", meaning: "Extremely idealistic; unrealistic and impractical.", synonyms: ["idealistic", "unrealistic", "impractical"], antonyms: ["practical", "realistic", "pragmatic"]},
+            {word: "eloquent", meaning: "Fluent or persuasive in speaking or writing.", synonyms: ["articulate", "fluent", "persuasive", "expressive"], antonyms: ["inarticulate", "tongue-tied", "stammering"]},
+            {word: "pensive", meaning: "Engaged in, involving, or reflecting deep or serious thought.", synonyms: ["thoughtful", "contemplative", "reflective", "meditative"], antonyms: ["thoughtless", "frivolous", "carefree"]},
+            {word: "pristine", meaning: "In its original condition; unspoiled.", synonyms: ["pure", "unspoiled", "untouched", "immaculate"], antonyms: ["corrupted", "polluted", "tainted", "defiled"]},
+            {word: "ubiquitous", meaning: "Present, appearing, or found everywhere.", synonyms: ["omnipresent", "pervasive", "universal", "widespread"], antonyms: ["rare", "scarce", "limited", "absent"]},
+            {word: "ephemeral", meaning: "Lasting for a very short time.", synonyms: ["transient", "fleeting", "temporary", "short-lived"], antonyms: ["permanent", "enduring", "lasting", "eternal"]},
+            {word: "facetious", meaning: "Treating serious issues with deliberately inappropriate humor.", synonyms: ["flippant", "frivolous", "jocular", "tongue-in-cheek"], antonyms: ["serious", "earnest", "solemn", "grave"]},
+            {word: "gregarious", meaning: "Fond of the company of others; sociable.", synonyms: ["sociable", "outgoing", "extroverted", "friendly"], antonyms: ["antisocial", "introverted", "reclusive", "solitary"]},
+            {word: "hackneyed", meaning: "Lacking significance through having been overused; unoriginal and trite.", synonyms: ["clichéd", "banal", "trite", "overused"], antonyms: ["original", "fresh", "innovative", "novel"]},
+            {word: "immutable", meaning: "Unchanging over time or unable to be changed.", synonyms: ["unchangeable", "fixed", "permanent", "constant"], antonyms: ["changeable", "mutable", "variable", "flexible"]},
+            {word: "jovial", meaning: "Cheerful and friendly.", synonyms: ["cheerful", "jolly", "merry", "genial"], antonyms: ["morose", "sullen", "gloomy", "dour"]}
+        ];
+        
+        let activeTab = 'classic';
+        let gameStates = {
+            classic: { currentWord: null, correctAnswers: 0, totalQuestions: 0, currentStreak: 0, selectedAnswer: null },
+            speed: { timeLeft: 60, correctAnswers: 0, totalQuestions: 0, isActive: false, timer: null, startTime: null },
+            quiz: { currentQuestion: 0, correctAnswers: 0, questions: [], isActive: false },
+            battle: { currentPlayer: 1, player1Score: 0, player2Score: 0, currentWord: null, isActive: false, selectedAnswer: null },
+            endurance: { level: 1, lives: 3, score: 0, currentWord: null, isActive: false, selectedAnswer: null }
+        };
+        
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab + '-tab').classList.add('active');
+                activeTab = btn.dataset.tab;
+            });
+        });
+        
+        // Classic Mode (same as before)
+        document.getElementById('classic-new').addEventListener('click', generateClassicQuestion);
+        document.getElementById('classic-submit').addEventListener('click', checkClassicAnswer);
+        
+        function generateClassicQuestion() {
+            const state = gameStates.classic;
+            state.currentWord = gameData[Math.floor(Math.random() * gameData.length)];
+            state.selectedAnswer = null;
+            
+            document.getElementById('classic-feedback').innerHTML = '';
+            document.getElementById('classic-submit').disabled = true;
+            
+            const wrongMeanings = gameData
+                .filter(w => w.word !== state.currentWord.word)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3)
+                .map(w => w.meaning);
+            const options = [...wrongMeanings, state.currentWord.meaning].sort(() => Math.random() - 0.5);
+            
+            state.correctAnswer = state.currentWord.meaning;
+            document.getElementById('classic-question').innerHTML = '<strong>What does "' + state.currentWord.word + '" mean?</strong>';
+            displayOptions('classic-options-area', options, (option) => {
+                state.selectedAnswer = option;
+                document.getElementById('classic-submit').disabled = false;
+            });
+        }
+        
+        function checkClassicAnswer() {
+            const state = gameStates.classic;
+            if (!state.selectedAnswer) return;
+            
+            const isCorrect = state.selectedAnswer === state.correctAnswer;
+            state.totalQuestions++;
+            
+            if (isCorrect) {
+                state.correctAnswers++;
+                state.currentStreak++;
+                showFeedback('classic-feedback', true, 'Excellent! 🎉');
+            } else {
+                state.currentStreak = 0;
+                showFeedback('classic-feedback', false, 'Not quite right. The answer was: ' + state.correctAnswer);
+            }
+            
+            updateScores('classic');
+            disableOptions('classic-options-area');
+            document.getElementById('classic-submit').disabled = true;
+        }
+        
+        // Speed Challenge (same as before)
+        document.getElementById('speed-start').addEventListener('click', startSpeedChallenge);
+        
+        function startSpeedChallenge() {
+            const state = gameStates.speed;
+            state.timeLeft = 60;
+            state.correctAnswers = 0;
+            state.totalQuestions = 0;
+            state.isActive = true;
+            state.startTime = Date.now();
+            
+            document.getElementById('speed-start').disabled = true;
+            generateSpeedQuestion();
+            
+            state.timer = setInterval(() => {
+                state.timeLeft--;
+                document.getElementById('speed-timer').textContent = state.timeLeft;
+                document.getElementById('speed-progress').style.width = (state.timeLeft / 60 * 100) + '%';
+                
+                if (state.timeLeft <= 0) {
+                    endSpeedChallenge();
+                }
+            }, 1000);
+        }
+        
+        function generateSpeedQuestion() {
+            const state = gameStates.speed;
+            if (!state.isActive) return;
+            
+            const currentWord = gameData[Math.floor(Math.random() * gameData.length)];
+            state.currentWord = currentWord;
+            
+            const wrongMeanings = gameData
+                .filter(w => w.word !== currentWord.word)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3)
+                .map(w => w.meaning);
+            const options = [...wrongMeanings, currentWord.meaning].sort(() => Math.random() - 0.5);
+            state.correctAnswer = currentWord.meaning;
+            
+            document.getElementById('speed-question').innerHTML = '<strong>What does "' + currentWord.word + '" mean?</strong>';
+            displayOptions('speed-options-area', options, (option) => {
+                checkSpeedAnswer(option);
+            });
+        }
+        
+        function checkSpeedAnswer(selectedAnswer) {
+            const state = gameStates.speed;
+            if (!state.isActive) return;
+            
+            const isCorrect = selectedAnswer === state.correctAnswer;
+            state.totalQuestions++;
+            if (isCorrect) state.correctAnswers++;
+            
+            showFeedback('speed-feedback', isCorrect, isCorrect ? '✅ Correct!' : '❌ Wrong');
+            updateScores('speed');
+            
+            setTimeout(() => {
+                if (state.isActive) {
+                    generateSpeedQuestion();
+                    document.getElementById('speed-feedback').innerHTML = '';
+                }
+            }, 800);
+        }
+        
+        function endSpeedChallenge() {
+            const state = gameStates.speed;
+            state.isActive = false;
+            clearInterval(state.timer);
+            
+            const finalScore = Math.round((state.correctAnswers / Math.max(state.totalQuestions, 1)) * 100);
+            showFeedback('speed-feedback', true, 
+                '<h3>⚡ Challenge Complete!</h3>' +
+                '<p>Score: ' + state.correctAnswers + '/' + state.totalQuestions + ' (' + finalScore + '%)</p>' +
+                '<p>Great job!</p>'
+            );
+            
+            document.getElementById('speed-start').disabled = false;
+        }
+        
+        // Quiz Mode (same as before)
+        document.getElementById('quiz-start').addEventListener('click', startQuiz);
+        document.getElementById('quiz-next').addEventListener('click', nextQuizQuestion);
+        
+        function startQuiz() {
+            const state = gameStates.quiz;
+            state.currentQuestion = 0;
+            state.correctAnswers = 0;
+            state.questions = [];
+            state.isActive = true;
+            
+            const shuffledWords = [...gameData].sort(() => Math.random() - 0.5).slice(0, 10);
+            
+            shuffledWords.forEach(word => {
+                const wrongMeanings = gameData
+                    .filter(w => w.word !== word.word)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3)
+                    .map(w => w.meaning);
+                const options = [...wrongMeanings, word.meaning].sort(() => Math.random() - 0.5);
+                
+                state.questions.push({
+                    word: word.word,
+                    correctMeaning: word.meaning,
+                    options: options,
+                    userAnswer: null,
+                    isCorrect: false
+                });
+            });
+            
+            document.getElementById('quiz-start').style.display = 'none';
+            document.getElementById('quiz-next').disabled = false;
+            showQuizQuestion();
+        }
+        
+        function showQuizQuestion() {
+            const state = gameStates.quiz;
+            const question = state.questions[state.currentQuestion];
+            
+            document.getElementById('quiz-question').innerHTML = 
+                '<strong>Question ' + (state.currentQuestion + 1) + ' of 10:</strong><br>' +
+                'What does "' + question.word + '" mean?';
+            
+            displayOptions('quiz-options-area', question.options, (option) => {
+                question.userAnswer = option;
+                question.isCorrect = option === question.correctMeaning;
+                disableOptions('quiz-options-area');
+                setTimeout(() => {
+                    showFeedback('quiz-feedback', question.isCorrect, 
+                        question.isCorrect ? '✅ Correct!' : '❌ Incorrect. Answer: ' + question.correctMeaning);
+                }, 500);
+            });
+            
+            const progress = ((state.currentQuestion) / 10 * 100);
+            document.getElementById('quiz-progress-bar').style.width = progress + '%';
+            document.getElementById('quiz-progress').textContent = (state.currentQuestion + 1) + '/10';
+        }
+        
+        function nextQuizQuestion() {
+            const state = gameStates.quiz;
+            
+            if (state.questions[state.currentQuestion] && state.questions[state.currentQuestion].isCorrect) {
+                state.correctAnswers++;
+            }
+            
+            state.currentQuestion++;
+            
+            if (state.currentQuestion >= 10) {
+                endQuiz();
+            } else {
+                document.getElementById('quiz-feedback').innerHTML = '';
+                showQuizQuestion();
+            }
+        }
+        
+        function endQuiz() {
+            const state = gameStates.quiz;
+            const score = Math.round((state.correctAnswers / 10) * 100);
+            
+            let grade = 'F';
+            if (score >= 90) grade = 'A';
+            else if (score >= 80) grade = 'B';
+            else if (score >= 70) grade = 'C';
+            else if (score >= 60) grade = 'D';
+            
+            document.getElementById('quiz-score').textContent = score + '%';
+            document.getElementById('quiz-grade').textContent = grade;
+            document.getElementById('quiz-progress-bar').style.width = '100%';
+            
+            showFeedback('quiz-feedback', true,
+                '<h3>🧠 Quiz Complete!</h3>' +
+                '<p>Final Score: ' + state.correctAnswers + '/10 (' + score + '%)</p>' +
+                '<p>Grade: ' + grade + '</p>' +
+                '<p>' + (score >= 80 ? 'Excellent work! 🏆' : 'Keep practicing! 📚') + '</p>'
+            );
+            
+            document.getElementById('quiz-question').innerHTML = 'Quiz Completed!';
+            document.getElementById('quiz-options-area').innerHTML = '';
+            document.getElementById('quiz-start').style.display = 'inline-block';
+            document.getElementById('quiz-next').disabled = true;
+        }
+        
+        // Word Battle Mode
+        document.getElementById('battle-start').addEventListener('click', startBattle);
+        document.getElementById('battle-reset').addEventListener('click', resetBattle);
+        
+        function startBattle() {
+            const state = gameStates.battle;
+            state.currentPlayer = 1;
+            state.player1Score = 0;
+            state.player2Score = 0;
+            state.isActive = true;
+            
+            updateBattleDisplay();
+            generateBattleQuestion();
+            document.getElementById('battle-start').disabled = true;
+        }
+        
+        function generateBattleQuestion() {
+            const state = gameStates.battle;
+            if (!state.isActive) return;
+            
+            state.currentWord = gameData[Math.floor(Math.random() * gameData.length)];
+            state.selectedAnswer = null;
+            
+            const wrongMeanings = gameData
+                .filter(w => w.word !== state.currentWord.word)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3)
+                .map(w => w.meaning);
+            const options = [...wrongMeanings, state.currentWord.meaning].sort(() => Math.random() - 0.5);
+            
+            document.getElementById('battle-question').innerHTML = 
+                '<strong>Player ' + state.currentPlayer + ', what does "' + state.currentWord.word + '" mean?</strong>';
+            
+            displayOptions('battle-options-area', options, (option) => {
+                checkBattleAnswer(option);
+            });
+        }
+        
+        function checkBattleAnswer(selectedAnswer) {
+            const state = gameStates.battle;
+            const isCorrect = selectedAnswer === state.currentWord.meaning;
+            
+            if (isCorrect) {
+                if (state.currentPlayer === 1) {
+                    state.player1Score++;
+                } else {
+                    state.player2Score++;
+                }
+                showFeedback('battle-feedback', true, 'Player ' + state.currentPlayer + ' scores! 🎉');
+            } else {
+                showFeedback('battle-feedback', false, 'Wrong! Answer: ' + state.currentWord.meaning);
+            }
+            
+            updateBattleDisplay();
+            disableOptions('battle-options-area');
+            
+            // Check for winner
+            if (state.player1Score >= 5 || state.player2Score >= 5) {
+                const winner = state.player1Score >= 5 ? 1 : 2;
+                setTimeout(() => {
+                    showFeedback('battle-feedback', true, 
+                        '<h3>🏆 Player ' + winner + ' Wins!</h3>' +
+                        '<p>Final Score: ' + state.player1Score + ' - ' + state.player2Score + '</p>'
+                    );
+                    state.isActive = false;
+                    document.getElementById('battle-start').disabled = false;
+                }, 1500);
+                return;
+            }
+            
+            // Switch players
+            state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
+            setTimeout(() => {
+                if (state.isActive) {
+                    generateBattleQuestion();
+                    document.getElementById('battle-feedback').innerHTML = '';
+                }
+            }, 2000);
+        }
+        
+        function updateBattleDisplay() {
+            const state = gameStates.battle;
+            document.getElementById('battle-p1-score').textContent = state.player1Score;
+            document.getElementById('battle-p2-score').textContent = state.player2Score;
+            
+            // Update active player highlighting
+            document.getElementById('player1-card').classList.toggle('active', state.currentPlayer === 1);
+            document.getElementById('player2-card').classList.toggle('active', state.currentPlayer === 2);
+        }
+        
+        function resetBattle() {
+            const state = gameStates.battle;
+            state.isActive = false;
+            state.currentPlayer = 1;
+            state.player1Score = 0;
+            state.player2Score = 0;
+            
+            updateBattleDisplay();
+            document.getElementById('battle-question').innerHTML = 'Click "Start Battle" to begin the word war!';
+            document.getElementById('battle-options-area').innerHTML = '';
+            document.getElementById('battle-feedback').innerHTML = '';
+            document.getElementById('battle-start').disabled = false;
+        }
+        
+        // Endurance Mode
+        document.getElementById('endurance-start').addEventListener('click', startEndurance);
+        document.getElementById('endurance-restart').addEventListener('click', restartEndurance);
+        
+        function startEndurance() {
+            const state = gameStates.endurance;
+            state.level = 1;
+            state.lives = 3;
+            state.score = 0;
+            state.isActive = true;
+            
+            updateEnduranceDisplay();
+            generateEnduranceQuestion();
+            document.getElementById('endurance-start').disabled = true;
+        }
+        
+        function generateEnduranceQuestion() {
+            const state = gameStates.endurance;
+            if (!state.isActive) return;
+            
+            // Get harder words as level increases
+            const availableWords = gameData.filter(w => w.meaning.length >= Math.min(state.level * 10, 50));
+            state.currentWord = availableWords[Math.floor(Math.random() * availableWords.length)] || gameData[Math.floor(Math.random() * gameData.length)];
+            
+            const wrongCount = Math.min(3, 2 + Math.floor(state.level / 3)); // More wrong answers at higher levels
+            const wrongMeanings = gameData
+                .filter(w => w.word !== state.currentWord.word)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, wrongCount)
+                .map(w => w.meaning);
+            const options = [...wrongMeanings, state.currentWord.meaning].sort(() => Math.random() - 0.5);
+            
+            document.getElementById('endurance-question').innerHTML = 
+                '<strong>Level ' + state.level + ': What does "' + state.currentWord.word + '" mean?</strong>';
+            
+            displayOptions('endurance-options-area', options, (option) => {
+                checkEnduranceAnswer(option);
+            });
+        }
+        
+        function checkEnduranceAnswer(selectedAnswer) {
+            const state = gameStates.endurance;
+            const isCorrect = selectedAnswer === state.currentWord.meaning;
+            
+            if (isCorrect) {
+                state.score += state.level * 10;
+                state.level++;
+                showFeedback('endurance-feedback', true, 'Correct! Level up! 🎉');
+            } else {
+                state.lives--;
+                showFeedback('endurance-feedback', false, 'Wrong! Lost a life. Answer: ' + state.currentWord.meaning);
+                
+                if (state.lives <= 0) {
+                    setTimeout(() => {
+                        showFeedback('endurance-feedback', false, 
+                            '<h3>💀 Game Over!</h3>' +
+                            '<p>Final Level: ' + state.level + '</p>' +
+                            '<p>Final Score: ' + state.score + '</p>'
+                        );
+                        state.isActive = false;
+                        document.getElementById('endurance-start').disabled = false;
+                    }, 1500);
+                    return;
+                }
+            }
+            
+            updateEnduranceDisplay();
+            disableOptions('endurance-options-area');
+            
+            setTimeout(() => {
+                if (state.isActive) {
+                    generateEnduranceQuestion();
+                    document.getElementById('endurance-feedback').innerHTML = '';
+                }
+            }, 2000);
+        }
+        
+        function updateEnduranceDisplay() {
+            const state = gameStates.endurance;
+            document.getElementById('endurance-level').textContent = state.level;
+            document.getElementById('endurance-score').textContent = state.score;
+            document.getElementById('endurance-lives').textContent = '❤️'.repeat(state.lives);
+        }
+        
+        function restartEndurance() {
+            const state = gameStates.endurance;
+            state.isActive = false;
+            state.level = 1;
+            state.lives = 3;
+            state.score = 0;
+            
+            updateEnduranceDisplay();
+            document.getElementById('endurance-question').innerHTML = 'Click "Start Endurance" to test your limits!';
+            document.getElementById('endurance-options-area').innerHTML = '';
+            document.getElementById('endurance-feedback').innerHTML = '';
+            document.getElementById('endurance-start').disabled = false;
+        }
+        
+        // Utility functions
+        function displayOptions(containerId, options, onSelect) {
+            const optionsArea = document.getElementById(containerId);
+            optionsArea.innerHTML = '';
+            
+            options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'choice-option';
+                optionDiv.textContent = (index + 1) + '. ' + option;
+                
+                optionDiv.onclick = function() {
+                    document.querySelectorAll('#' + containerId + ' .choice-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    optionDiv.classList.add('selected');
+                    onSelect(option);
+                };
+                
+                optionsArea.appendChild(optionDiv);
+            });
+        }
+        
+        function disableOptions(containerId) {
+            document.querySelectorAll('#' + containerId + ' .choice-option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                opt.style.opacity = '0.7';
+            });
+        }
+        
+        function showFeedback(elementId, isCorrect, message) {
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+            feedback.innerHTML = message;
+            
+            const feedbackArea = document.getElementById(elementId);
+            feedbackArea.innerHTML = '';
+            feedbackArea.appendChild(feedback);
+        }
+        
+        function updateScores(gameType) {
+            const state = gameStates[gameType];
+            document.getElementById(gameType + '-correct').textContent = state.correctAnswers;
+            document.getElementById(gameType + '-total').textContent = state.totalQuestions;
+            if (gameType === 'classic') {
+                document.getElementById(gameType + '-streak').textContent = state.currentStreak;
+            }
+            if (gameType === 'speed') {
+                const elapsedMinutes = (Date.now() - state.startTime) / 1000 / 60;
+                const wpm = Math.round(state.correctAnswers / Math.max(elapsedMinutes, 0.1));
+                document.getElementById('speed-wpm').textContent = wpm;
+            }
+        }
+        
+        // Initialize
+        generateClassicQuestion();
+    </script>
+</body>
+</html>

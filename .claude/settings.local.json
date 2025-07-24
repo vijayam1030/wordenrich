@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ollama list:*)",
+      "Bash(python3:*)",
+      "Bash(cp enriched_wordlist_backup.txt enriched_wordlist.txt)",
+      "Bash(ls:*)",
+      "Bash(python:*)",
+      "Bash(grep:*)",
+      "Bash(google-chrome:*)",
+      "Bash(npm install)",
+      "Bash(npm start)",
+      "Bash(pkill:*)",
+      "Bash(touch:*)"
+    ],
+    "deny": []
+  }
+}
