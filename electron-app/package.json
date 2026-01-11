@@ -1,0 +1,12 @@
+{
+  "name": "word-games-electron",
+  "version": "1.0.0",
+  "description": "Word Games Collection Electron App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^30.0.0"
+  }
+}
