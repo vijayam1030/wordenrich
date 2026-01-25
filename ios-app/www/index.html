@@ -74,17 +74,23 @@
             background-attachment: fixed;
             min-height: 100vh;
             color: #333;
-            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            padding: 0;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
+            overflow: hidden;
         }
         
         .game-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 10px;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .game-header {
@@ -120,11 +126,10 @@
         }
         
         .tab-container {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
         }
         
         .tab-nav {
@@ -132,6 +137,68 @@
             background: #f8f9fa;
             flex-wrap: wrap;
             justify-content: center;
+        }
+        
+        /* Hide old top tab navigation */
+        .tab-nav {
+            display: none;
+        }
+        
+        /* Bottom Tab Bar (iPhone Style) */
+        .tab-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            bottom: 0;
+            z-index: 1000;
+        }
+        
+        .tab-bar-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            padding: 4px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .tab-bar-btn:active {
+            transform: scale(0.9);
+        }
+        
+        .tab-bar-icon {
+            font-size: 24px;
+            margin-bottom: 2px;
+            opacity: 0.5;
+            transition: all 0.2s ease;
+        }
+        
+        .tab-bar-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: #8e8e93;
+            transition: all 0.2s ease;
+        }
+        
+        .tab-bar-btn.active .tab-bar-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .tab-bar-btn.active .tab-bar-label {
+            color: #667eea;
+            font-weight: 600;
         }
         
         .tab-btn {
@@ -168,7 +235,12 @@
         .tab-icon { font-size: 1.1em; margin-bottom: 2px; display: block; }
         .tab-label { font-size: 0.75em; display: block; }
         
-        .tab-content { display: none; padding: 20px; }
+        .tab-content { 
+            display: none; 
+            padding: 16px;
+            padding-bottom: 20px;
+            min-height: calc(100vh - 80px);
+        }
         .tab-content.active { 
             display: block;
             animation: fadeIn 0.5s ease-out;
@@ -918,6 +990,20 @@
                 background-color: rgba(255, 255, 255, 0.3);
                 color: #f1f5f9;
             }
+            
+            /* Bottom Tab Bar Dark Mode */
+            .tab-bar {
+                background: rgba(30, 41, 59, 0.95);
+                border-top-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .tab-bar-label {
+                color: #94a3b8;
+            }
+            
+            .tab-bar-btn.active .tab-bar-label {
+                color: #818cf8;
+            }
         }
         
         /* Text selection in light mode */
@@ -934,47 +1020,9 @@
 </head>
 <body>
     <div class="game-container">
-        <div class="game-header">
-            <h1 class="game-title">🎮 Enhanced Word Games</h1>
-            <p class="game-subtitle">Complete Vocabulary Learning with Detailed Explanations</p>
-            <div class="word-count">📚 4,963 Words • 🌍 Origins • 📖 Full Explanations</div>
-        </div>
-        
         <div class="tab-container">
-            <div class="tab-nav">
-                <button class="tab-btn active" data-tab="classic">
-                    <span class="tab-icon">📚</span>
-                    <span class="tab-label">Classic</span>
-                </button>
-                <button class="tab-btn" data-tab="speed">
-                    <span class="tab-icon">⚡</span>
-                    <span class="tab-label">Speed</span>
-                </button>
-                <button class="tab-btn" data-tab="quiz">
-                    <span class="tab-icon">🧠</span>
-                    <span class="tab-label">Quiz</span>
-                </button>
-                <button class="tab-btn" data-tab="battle">
-                    <span class="tab-icon">⚔️</span>
-                    <span class="tab-label">Battle</span>
-                </button>
-                <button class="tab-btn" data-tab="endurance">
-                    <span class="tab-icon">🏃</span>
-                    <span class="tab-label">Endure</span>
-                </button>
-                <button class="tab-btn" data-tab="dictionary">
-                    <span class="tab-icon">📖</span>
-                    <span class="tab-label">Dictionary</span>
-                </button>
-            </div>
-            
             <!-- Classic Mode -->
             <div class="tab-content active" id="classic-tab">
-                <div class="game-description">
-                    <h3>📚 Classic Word Game</h3>
-                    <p>Select your answer and learn instantly! Detailed explanations with origins and examples.</p>
-                </div>
-                
                 <div class="score-board">
                     <div class="score-item">
                         <div class="score-number" id="classic-correct">0</div>
@@ -1046,11 +1094,6 @@
             
             <!-- Quiz Mode -->
             <div class="tab-content" id="quiz-tab">
-                <div class="game-description">
-                    <h3>🧠 Quiz Master</h3>
-                    <p>One-click answers! 10-question test with instant detailed explanations.</p>
-                </div>
-                
                 <div class="score-board">
                     <div class="score-item">
                         <div class="score-number" id="quiz-progress">0/10</div>
@@ -1154,11 +1197,6 @@
             
             <!-- Dictionary Tab -->
             <div class="tab-content" id="dictionary-tab">
-                <div class="game-description">
-                    <h3>📖 Word Dictionary</h3>
-                    <p>Browse all 4,963 words with complete definitions, synonyms, antonyms, and examples!</p>
-                </div>
-                
                 <div class="dictionary-search">
                     <input type="text" id="dictionary-search-input" placeholder="🔍 Search for a word..." />
                 </div>
@@ -1177,6 +1215,34 @@
                 <div class="word-list" id="word-list-container">
                     <!-- Words will be populated here -->
                 </div>
+            </div>
+            
+            <!-- Bottom Tab Bar (iPhone Style) -->
+            <div class="tab-bar">
+                <button class="tab-bar-btn active" data-tab="classic">
+                    <span class="tab-bar-icon">📚</span>
+                    <span class="tab-bar-label">Classic</span>
+                </button>
+                <button class="tab-bar-btn" data-tab="speed">
+                    <span class="tab-bar-icon">⚡</span>
+                    <span class="tab-bar-label">Speed</span>
+                </button>
+                <button class="tab-bar-btn" data-tab="quiz">
+                    <span class="tab-bar-icon">🧠</span>
+                    <span class="tab-bar-label">Quiz</span>
+                </button>
+                <button class="tab-bar-btn" data-tab="battle">
+                    <span class="tab-bar-icon">⚔️</span>
+                    <span class="tab-bar-label">Battle</span>
+                </button>
+                <button class="tab-bar-btn" data-tab="endurance">
+                    <span class="tab-bar-icon">🏃</span>
+                    <span class="tab-bar-label">Endure</span>
+                </button>
+                <button class="tab-bar-btn" data-tab="dictionary">
+                    <span class="tab-bar-icon">📖</span>
+                    <span class="tab-bar-label">Dict</span>
+                </button>
             </div>
         </div>
     </div>
@@ -120359,6 +120425,18 @@
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab + '-tab').classList.add('active');
+                activeTab = btn.dataset.tab;
+            });
+        });
+        
+        // Bottom Tab Bar functionality
+        document.querySelectorAll('.tab-bar-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-bar-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
                 
                 btn.classList.add('active');
