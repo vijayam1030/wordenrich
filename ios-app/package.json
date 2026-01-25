@@ -1,0 +1,20 @@
+{
+  "name": "word-games-app",
+  "version": "1.0.0",
+  "description": "Word Games - Vocabulary Learning App",
+  "main": "index.js",
+  "scripts": {
+    "install:ios": "npx cap add ios",
+    "sync": "npx cap sync",
+    "open:ios": "npx cap open ios",
+    "build": "npx cap copy && npx cap sync"
+  },
+  "keywords": ["vocabulary", "games", "education", "ios"],
+  "author": "Word Games",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/cli": "^5.5.1",
+    "@capacitor/ios": "^5.5.1"
+  }
+}
