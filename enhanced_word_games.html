@@ -333,6 +333,96 @@
             margin: 5px 0;
         }
         
+        /* Dictionary Styles */
+        .dictionary-search {
+            margin-bottom: 20px;
+        }
+        
+        .dictionary-search input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .dictionary-search input:focus {
+            border-color: #667eea;
+        }
+        
+        .dictionary-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%);
+            border-radius: 10px;
+        }
+        
+        .dictionary-stats .stat {
+            text-align: center;
+        }
+        
+        .dictionary-stats .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .dictionary-stats .stat-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .word-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .word-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .word-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .word-item-header {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .word-item-meaning {
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .word-item-details {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .word-item-detail-section {
+            margin-top: 5px;
+        }
+        
+        .word-item-detail-section strong {
+            color: #764ba2;
+        }
+        
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .game-container { padding: 5px; }
@@ -388,6 +478,10 @@
                 <button class="tab-btn" data-tab="endurance">
                     <span class="tab-icon">🏃</span>
                     <span class="tab-label">Endure</span>
+                </button>
+                <button class="tab-btn" data-tab="dictionary">
+                    <span class="tab-icon">📖</span>
+                    <span class="tab-label">Dictionary</span>
                 </button>
             </div>
             
@@ -573,6 +667,33 @@
                 </div>
                 
                 <div id="endurance-feedback"></div>
+            </div>
+            
+            <!-- Dictionary Tab -->
+            <div class="tab-content" id="dictionary-tab">
+                <div class="game-description">
+                    <h3>📖 Word Dictionary</h3>
+                    <p>Browse all 4,963 words with complete definitions, synonyms, antonyms, and examples!</p>
+                </div>
+                
+                <div class="dictionary-search">
+                    <input type="text" id="dictionary-search-input" placeholder="🔍 Search for a word..." />
+                </div>
+                
+                <div class="dictionary-stats">
+                    <div class="stat">
+                        <div class="stat-number" id="dict-total-words">4,963</div>
+                        <div class="stat-label">Total Words</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="dict-showing-words">4,963</div>
+                        <div class="stat-label">Showing</div>
+                    </div>
+                </div>
+                
+                <div class="word-list" id="word-list-container">
+                    <!-- Words will be populated here -->
+                </div>
             </div>
         </div>
     </div>
@@ -120304,6 +120425,73 @@
                 document.getElementById('speed-wpm').textContent = wpm;
             }
         }
+        
+        // Dictionary functionality
+        let allWords = [...gameData].sort((a, b) => a.word.localeCompare(b.word));
+        let filteredWords = allWords;
+        
+        function renderDictionary(words = allWords) {
+            const container = document.getElementById('word-list-container');
+            container.innerHTML = '';
+            
+            words.forEach(wordData => {
+                const wordItem = document.createElement('div');
+                wordItem.className = 'word-item';
+                
+                let synonymsText = wordData.synonyms && wordData.synonyms.length > 0 
+                    ? wordData.synonyms.join(', ') 
+                    : 'None';
+                let antonymsText = wordData.antonyms && wordData.antonyms.length > 0 
+                    ? wordData.antonyms.join(', ') 
+                    : 'None';
+                let exampleText = wordData.sentences && wordData.sentences.length > 0 
+                    ? wordData.sentences[0] 
+                    : '';
+                
+                wordItem.innerHTML = `
+                    <div class="word-item-header">${wordData.word}</div>
+                    <div class="word-item-meaning">${wordData.meaning}</div>
+                    <div class="word-item-details">
+                        ${wordData.origin ? `<div class="word-item-detail-section"><strong>Origin:</strong> ${wordData.origin}</div>` : ''}
+                        <div class="word-item-detail-section"><strong>Synonyms:</strong> ${synonymsText}</div>
+                        <div class="word-item-detail-section"><strong>Antonyms:</strong> ${antonymsText}</div>
+                        ${exampleText ? `<div class="word-item-detail-section"><strong>Example:</strong> <em>${exampleText}</em></div>` : ''}
+                    </div>
+                `;
+                
+                container.appendChild(wordItem);
+            });
+            
+            document.getElementById('dict-showing-words').textContent = words.length;
+        }
+        
+        // Search functionality
+        document.getElementById('dictionary-search-input').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredWords = allWords;
+            } else {
+                filteredWords = allWords.filter(wordData => 
+                    wordData.word.toLowerCase().includes(searchTerm) ||
+                    wordData.meaning.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderDictionary(filteredWords);
+        });
+        
+        // Initialize dictionary when tab is clicked
+        let dictionaryInitialized = false;
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            const originalListener = btn.onclick;
+            btn.addEventListener('click', () => {
+                if (btn.dataset.tab === 'dictionary' && !dictionaryInitialized) {
+                    renderDictionary();
+                    dictionaryInitialized = true;
+                }
+            });
+        });
         
         // Initialize
         console.log('🎮 Enhanced Word Games loaded with ' + gameData.length + ' words!');
