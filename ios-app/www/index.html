@@ -273,61 +273,69 @@
         }
         
         .question-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 1.2em;
+            padding: 24px 20px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 600;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.45;
+            letter-spacing: -0.3px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
         }
         
         .choice-option {
-            background: #38a169;
-            color: white;
-            padding: 15px;
-            margin: 8px 0;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            color: #1c1c1e;
+            padding: 16px 20px;
+            margin: 10px 0;
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            border: 2px solid transparent;
-            font-size: 1em;
-            line-height: 1.4;
-            min-height: 60px;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        background 0.2s ease,
+                        box-shadow 0.2s ease;
+            text-align: left;
+            border: none;
+            font-size: 16px;
+            line-height: 1.45;
+            min-height: 56px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             user-select: none;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            -webkit-tap-highlight-color: transparent;
         }
-        
-        .choice-option:hover { 
-            background: linear-gradient(135deg, #e0e7ff 0%, #fae8ff 100%);
-            border-color: #667eea;
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-            color: #1f2937;
+
+        .choice-option:hover {
+            background: rgba(255, 255, 255, 1);
         }
-        .choice-option:active { transform: scale(0.98); }
-        .choice-option.selected { 
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%); 
-            border-color: #7c3aed; 
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-            transform: translateY(-1px);
+
+        .choice-option:active {
+            transform: scale(0.97);
+            background: rgba(0, 122, 255, 0.1);
+        }
+
+        .choice-option.selected {
+            background: #007AFF;
             color: white;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
+            transform: scale(1.01);
         }
-        
+
         .choice-option.processing {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            border-color: #d97706;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
-            animation: pulse 1s infinite;
+            background: #007AFF;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
         }
-        
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            50% { opacity: 0.85; }
         }
         
         .score-board {
@@ -354,123 +362,308 @@
         }
         
         .game-btn {
-            padding: 10px 18px;
-            font-size: 0.9em;
+            padding: 14px 28px;
+            font-size: 17px;
             border: none;
-            border-radius: 20px;
+            border-radius: 14px;
             cursor: pointer;
             font-family: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: bold;
-            min-width: 110px;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.15s ease;
+            font-weight: 600;
+            min-width: 120px;
+            min-height: 50px;
             user-select: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            -webkit-tap-highlight-color: transparent;
         }
-        
+
         .game-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
         }
-        
-        .game-btn:active { transform: translateY(-1px) scale(0.98); }
-        .primary-btn { background: #667eea; color: white; }
-        .primary-btn:hover { background: #5a67d8; }
+
+        .game-btn:active {
+            transform: scale(0.96);
+            opacity: 0.85;
+        }
+
+        .primary-btn {
+            background: #007AFF;
+            color: white;
+        }
         
         .feedback {
-            padding: 15px;
-            border-radius: 12px;
-            margin: 15px 0;
-            font-size: 1.1em;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .correct { 
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border: 2px solid #047857;
-            animation: correctPulse 0.6s ease-out;
-            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
-        }
-        .incorrect { 
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-            border: 2px solid #b91c1c;
-            animation: wrongShake 0.5s ease-out;
-            box-shadow: 0 6px 25px rgba(239, 68, 68, 0.5);
-        }
-        
-        .word-explanation {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 15px 0;
-            text-align: left;
-            border: 2px solid #e2e8f0;
-        }
-        
-        .word-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .explanation-section {
+            padding: 16px 20px;
+            border-radius: 14px;
             margin: 12px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-        }
-        
-        .section-title {
-            font-weight: bold;
-            color: #4a5568;
-            margin-bottom: 8px;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            animation: feedbackPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes feedbackPop {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .correct {
+            background: #34c759;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.4);
+        }
+
+        .incorrect {
+            background: #ff3b30;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);
         }
         
-        .section-content {
-            color: #2d3748;
+        /* Compact inline feedback card - iOS Style */
+        .word-explanation {
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 16px;
+            border-radius: 16px;
+            margin: 12px 0;
+            text-align: center;
+            border: none;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            animation: feedbackAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes feedbackAppear {
+            from { opacity: 0; transform: scale(0.9) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .word-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #007AFF;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .definition-compact {
+            font-size: 15px;
+            color: #3c3c43;
             line-height: 1.5;
+            margin-bottom: 14px;
+            opacity: 0.8;
         }
-        
+
+        .learn-more-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 50px;
+            min-width: 160px;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .learn-more-btn:active {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+
+        /* iOS-style Bottom Sheet Modal */
+        .word-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            justify-content: flex-end;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .word-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .word-modal-overlay.closing {
+            opacity: 0;
+        }
+
+        .word-modal {
+            background: #f2f2f7;
+            border-radius: 20px 20px 0 0;
+            width: 100%;
+            max-height: 85vh;
+            overflow: hidden;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .word-modal-overlay.active .word-modal {
+            transform: translateY(0);
+        }
+
+        .word-modal-overlay.closing .word-modal {
+            transform: translateY(100%);
+        }
+
+        /* iOS Drag Handle */
+        .modal-drag-handle {
+            width: 36px;
+            height: 5px;
+            background: rgba(60, 60, 67, 0.3);
+            border-radius: 3px;
+            margin: 8px auto 4px;
+        }
+
+        .modal-header {
+            background: transparent;
+            color: #000;
+            padding: 8px 20px 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #f2f2f7;
+        }
+
+        .modal-word {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: #000;
+            margin-top: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(60, 60, 67, 0.1);
+            border: none;
+            color: #007AFF;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 300;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal-close:active {
+            background: rgba(60, 60, 67, 0.2);
+        }
+
+        .modal-scroll-content {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            max-height: calc(85vh - 80px);
+            overscroll-behavior: contain;
+        }
+
+        .modal-body {
+            padding: 0 16px 24px;
+        }
+
+        .modal-section {
+            margin-bottom: 12px;
+            padding: 16px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .modal-section-title {
+            font-weight: 600;
+            color: #007AFF;
+            margin-bottom: 10px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .modal-section-content {
+            color: #1c1c1e;
+            line-height: 1.55;
+            font-size: 17px;
+            letter-spacing: -0.2px;
+        }
+
         .synonym-tag, .antonym-tag {
             display: inline-block;
-            padding: 4px 8px;
-            margin: 2px;
-            border-radius: 12px;
-            font-size: 0.85em;
+            padding: 8px 14px;
+            margin: 4px;
+            border-radius: 20px;
+            font-size: 15px;
             font-weight: 500;
+            transition: transform 0.15s ease;
         }
-        
+
+        .synonym-tag:active, .antonym-tag:active {
+            transform: scale(0.95);
+        }
+
         .synonym-tag {
-            background: #c6f6d5;
-            color: #22543d;
+            background: #d1fae5;
+            color: #065f46;
         }
-        
+
         .antonym-tag {
-            background: #fed7d7;
-            color: #742a2a;
+            background: #fee2e2;
+            color: #991b1b;
         }
-        
+
         .example-sentence {
-            background: #edf2f7;
-            padding: 10px;
-            border-radius: 6px;
+            background: rgba(0, 122, 255, 0.08);
+            padding: 14px 16px;
+            border-radius: 12px;
             font-style: italic;
-            border-left: 3px solid #667eea;
-            margin: 5px 0;
+            border-left: none;
+            margin: 8px 0;
+            font-size: 16px;
+            color: #1c1c1e;
+            line-height: 1.5;
         }
-        
+
         .origin-box {
-            background: linear-gradient(135deg, #fef5e7 0%, #fed7aa 100%);
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #f6ad55;
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            padding: 16px;
+            border-radius: 12px;
+            border-left: none;
+            font-size: 16px;
+            color: #9a3412;
+            line-height: 1.5;
         }
         
         .timer-display {
@@ -712,12 +905,28 @@
                 flex-direction: column; 
                 gap: 12px;
             }
-            .word-explanation { 
-                padding: 16px; 
-                border-radius: 12px;
+            .word-explanation {
+                padding: 10px;
+                border-radius: 10px;
             }
-            .word-title { 
-                font-size: 1.4em; 
+            .word-title {
+                font-size: 1em;
+            }
+            .word-modal {
+                max-height: 80vh;
+            }
+            .modal-header {
+                padding: 16px;
+            }
+            .modal-word {
+                font-size: 1.4em;
+            }
+            .modal-body {
+                padding: 16px;
+            }
+            .modal-section {
+                padding: 12px;
+                margin-bottom: 12px;
             }
             .score-board {
                 gap: 10px;
@@ -807,18 +1016,16 @@
         }
         
         @media (hover: none) and (pointer: coarse) {
-            .choice-option { 
-                min-height: 64px; 
-                padding: 16px;
-                cursor: pointer;
+            .choice-option {
+                min-height: 56px;
+                padding: 16px 20px;
             }
             .choice-option:active {
-                transform: scale(0.98);
+                transform: scale(0.97);
             }
-            .game-btn { 
-                min-height: 48px; 
-                padding: 14px 20px;
-                cursor: pointer;
+            .game-btn {
+                min-height: 50px;
+                padding: 14px 24px;
             }
             .game-btn:active {
                 transform: scale(0.97);
@@ -905,15 +1112,38 @@
                 color: #f1f5f9;
                 border-color: #475569;
             }
-            
+
             .choice-btn:hover {
                 background: #475569;
                 border-color: #64748b;
             }
-            
+
             .choice-btn.selected {
                 background: rgba(129, 140, 248, 0.2);
                 border-color: #818cf8;
+            }
+
+            .choice-option {
+                background: rgba(44, 44, 46, 0.95);
+                color: #fff;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .choice-option:active {
+                background: rgba(10, 132, 255, 0.2);
+            }
+
+            .choice-option.selected {
+                background: #0a84ff;
+                color: white;
+            }
+
+            .feedback.correct {
+                background: #30d158;
+            }
+
+            .feedback.incorrect {
+                background: #ff453a;
             }
             
             .stats {
@@ -936,7 +1166,83 @@
                 background: #334155;
                 border-color: #475569;
             }
-            
+
+            .word-explanation {
+                background: rgba(44, 44, 46, 0.95);
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+            }
+
+            .word-title {
+                color: #0a84ff;
+            }
+
+            .definition-compact {
+                color: #ebebf5;
+                opacity: 0.8;
+            }
+
+            .learn-more-btn {
+                background: #0a84ff;
+            }
+
+            .word-modal-overlay {
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .word-modal {
+                background: #1c1c1e;
+            }
+
+            .modal-drag-handle {
+                background: rgba(235, 235, 245, 0.3);
+            }
+
+            .modal-header {
+                background: #1c1c1e;
+            }
+
+            .modal-word {
+                color: #fff;
+            }
+
+            .modal-close {
+                background: rgba(235, 235, 245, 0.1);
+                color: #0a84ff;
+            }
+
+            .modal-section {
+                background: #2c2c2e;
+            }
+
+            .modal-section-title {
+                color: #0a84ff;
+            }
+
+            .modal-section-content {
+                color: #ebebf5;
+            }
+
+            .synonym-tag {
+                background: rgba(52, 199, 89, 0.2);
+                color: #30d158;
+            }
+
+            .antonym-tag {
+                background: rgba(255, 69, 58, 0.2);
+                color: #ff453a;
+            }
+
+            .example-sentence {
+                background: rgba(10, 132, 255, 0.1);
+                color: #ebebf5;
+            }
+
+            .origin-box {
+                background: rgba(255, 159, 10, 0.15);
+                color: #ffd60a;
+            }
+
             .word-list-container {
                 background: #1e293b;
             }
@@ -1252,6 +1558,20 @@
                     <span class="tab-bar-icon">📖</span>
                     <span class="tab-bar-label">Dict</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS-style Word Details Bottom Sheet -->
+    <div class="word-modal-overlay" id="wordModal" onclick="handleModalOverlayClick(event)">
+        <div class="word-modal" id="wordModalSheet" ontouchstart="handleModalTouchStart(event)" ontouchmove="handleModalTouchMove(event)" ontouchend="handleModalTouchEnd(event)">
+            <div class="modal-drag-handle"></div>
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeWordModal()">&#x2715;</button>
+                <div class="modal-word" id="modalWord"></div>
+            </div>
+            <div class="modal-scroll-content">
+                <div class="modal-body" id="modalBody"></div>
             </div>
         </div>
     </div>
@@ -120352,82 +120672,207 @@
         
         // Enhanced feedback with detailed word explanation
         function showDetailedFeedback(elementId, isCorrect, word, userAnswer) {
+            // Trigger haptic feedback
+            triggerHaptic(isCorrect ? 'success' : 'error');
+
             const feedback = document.createElement('div');
             feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
-            
-            // Basic feedback
+
+            // iOS-style concise feedback
             if (isCorrect) {
-                feedback.innerHTML = '🎉 <strong>Excellent!</strong> You got it right!';
+                feedback.innerHTML = '<span style="font-size:1.3em">✓</span> <strong>Correct!</strong>';
             } else {
-                feedback.innerHTML = '❌ <strong>Not quite right.</strong><br>You selected: <em>' + userAnswer + '</em><br>Correct answer: <strong>' + word.meaning + '</strong>';
+                feedback.innerHTML = '<span style="font-size:1.3em">✗</span> <strong>Incorrect</strong>';
             }
-            
+
             const feedbackArea = document.getElementById(elementId);
             feedbackArea.innerHTML = '';
             feedbackArea.appendChild(feedback);
-            
-            // Add detailed word explanation
+
+            // Add detailed word explanation after brief delay
             setTimeout(() => {
                 showWordExplanation(elementId, word);
-            }, 1000);
+            }, 800);
         }
-        
+
+        // Store current word for modal
+        let currentModalWord = null;
+
         function showWordExplanation(elementId, word) {
+            currentModalWord = word;
             const explanation = document.createElement('div');
             explanation.className = 'word-explanation';
-            
-            let explanationHTML = '<div class="word-title">📖 ' + word.word.toUpperCase() + '</div>';
-            
-            // Meaning
-            explanationHTML += '<div class="explanation-section">';
-            explanationHTML += '<div class="section-title">💭 Definition</div>';
-            explanationHTML += '<div class="section-content">' + word.meaning + '</div>';
-            explanationHTML += '</div>';
-            
-            // Synonyms
-            if (word.synonyms && word.synonyms.length > 0) {
-                explanationHTML += '<div class="explanation-section">';
-                explanationHTML += '<div class="section-title">🔗 Synonyms (Similar Words)</div>';
-                explanationHTML += '<div class="section-content">';
-                word.synonyms.forEach(syn => {
-                    explanationHTML += '<span class="synonym-tag">' + syn + '</span>';
-                });
-                explanationHTML += '</div></div>';
-            }
-            
-            // Antonyms
-            if (word.antonyms && word.antonyms.length > 0) {
-                explanationHTML += '<div class="explanation-section">';
-                explanationHTML += '<div class="section-title">⚡ Antonyms (Opposite Words)</div>';
-                explanationHTML += '<div class="section-content">';
-                word.antonyms.forEach(ant => {
-                    explanationHTML += '<span class="antonym-tag">' + ant + '</span>';
-                });
-                explanationHTML += '</div></div>';
-            }
-            
-            // Example sentences
-            if (word.sentences && word.sentences.length > 0) {
-                explanationHTML += '<div class="explanation-section">';
-                explanationHTML += '<div class="section-title">💬 Example Usage</div>';
-                explanationHTML += '<div class="section-content">';
-                word.sentences.forEach(sentence => {
-                    explanationHTML += '<div class="example-sentence">"' + sentence + '"</div>';
-                });
-                explanationHTML += '</div></div>';
-            }
-            
-            // Origin/Etymology
-            if (word.origin && word.origin.trim()) {
-                explanationHTML += '<div class="explanation-section">';
-                explanationHTML += '<div class="section-title">🌍 Word Origin & Etymology</div>';
-                explanationHTML += '<div class="section-content">';
-                explanationHTML += '<div class="origin-box">' + word.origin + '</div>';
-                explanationHTML += '</div></div>';
-            }
-            
+
+            // Compact card with word and short definition
+            let truncatedMeaning = word.meaning.length > 70 ? word.meaning.substring(0, 70) + '...' : word.meaning;
+
+            let explanationHTML = '<div class="word-title">' + word.word.toUpperCase() + '</div>';
+            explanationHTML += '<div class="definition-compact">' + truncatedMeaning + '</div>';
+            explanationHTML += '<button class="learn-more-btn" onclick="openWordModal()">Learn More</button>';
+
             explanation.innerHTML = explanationHTML;
             document.getElementById(elementId).appendChild(explanation);
+        }
+
+        // iOS Haptic Feedback helper
+        function triggerHaptic(style = 'light') {
+            if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Haptics) {
+                const Haptics = window.Capacitor.Plugins.Haptics;
+                if (style === 'light') {
+                    Haptics.impact({ style: 'light' });
+                } else if (style === 'medium') {
+                    Haptics.impact({ style: 'medium' });
+                } else if (style === 'heavy') {
+                    Haptics.impact({ style: 'heavy' });
+                } else if (style === 'success') {
+                    Haptics.notification({ type: 'success' });
+                } else if (style === 'error') {
+                    Haptics.notification({ type: 'error' });
+                }
+            }
+        }
+
+        // Modal swipe-to-dismiss state
+        let modalTouchStartY = 0;
+        let modalTouchCurrentY = 0;
+        let isModalDragging = false;
+
+        function openWordModal() {
+            if (!currentModalWord) return;
+            triggerHaptic('light');
+            const word = currentModalWord;
+
+            document.getElementById('modalWord').textContent = word.word.toUpperCase();
+
+            let bodyHTML = '';
+
+            // Definition
+            bodyHTML += '<div class="modal-section">';
+            bodyHTML += '<div class="modal-section-title">💭 Definition</div>';
+            bodyHTML += '<div class="modal-section-content">' + word.meaning + '</div>';
+            bodyHTML += '</div>';
+
+            // Synonyms
+            if (word.synonyms && word.synonyms.length > 0) {
+                bodyHTML += '<div class="modal-section">';
+                bodyHTML += '<div class="modal-section-title">🔗 Synonyms</div>';
+                bodyHTML += '<div class="modal-section-content">';
+                word.synonyms.forEach(syn => {
+                    bodyHTML += '<span class="synonym-tag">' + syn + '</span>';
+                });
+                bodyHTML += '</div></div>';
+            }
+
+            // Antonyms
+            if (word.antonyms && word.antonyms.length > 0) {
+                bodyHTML += '<div class="modal-section">';
+                bodyHTML += '<div class="modal-section-title">⚡ Antonyms</div>';
+                bodyHTML += '<div class="modal-section-content">';
+                word.antonyms.forEach(ant => {
+                    bodyHTML += '<span class="antonym-tag">' + ant + '</span>';
+                });
+                bodyHTML += '</div></div>';
+            }
+
+            // Examples
+            if (word.sentences && word.sentences.length > 0) {
+                bodyHTML += '<div class="modal-section">';
+                bodyHTML += '<div class="modal-section-title">💬 Example Usage</div>';
+                bodyHTML += '<div class="modal-section-content">';
+                word.sentences.forEach(sentence => {
+                    bodyHTML += '<div class="example-sentence">"' + sentence + '"</div>';
+                });
+                bodyHTML += '</div></div>';
+            }
+
+            // Origin
+            if (word.origin && word.origin.trim()) {
+                bodyHTML += '<div class="modal-section">';
+                bodyHTML += '<div class="modal-section-title">🌍 Word Origin</div>';
+                bodyHTML += '<div class="origin-box">' + word.origin + '</div>';
+                bodyHTML += '</div>';
+            }
+
+            document.getElementById('modalBody').innerHTML = bodyHTML;
+            const modal = document.getElementById('wordModal');
+            modal.classList.add('active');
+            modal.classList.remove('closing');
+
+            // Reset scroll position
+            const scrollContent = document.querySelector('.modal-scroll-content');
+            if (scrollContent) scrollContent.scrollTop = 0;
+        }
+
+        function closeWordModal() {
+            triggerHaptic('light');
+            const modal = document.getElementById('wordModal');
+            const sheet = document.getElementById('wordModalSheet');
+
+            modal.classList.add('closing');
+            sheet.style.transform = '';
+
+            setTimeout(() => {
+                modal.classList.remove('active', 'closing');
+            }, 300);
+        }
+
+        function handleModalOverlayClick(event) {
+            if (event.target === document.getElementById('wordModal')) {
+                closeWordModal();
+            }
+        }
+
+        function handleModalTouchStart(event) {
+            const scrollContent = document.querySelector('.modal-scroll-content');
+            // Only allow drag if at top of scroll or touching header area
+            if (scrollContent && scrollContent.scrollTop > 0) {
+                const touch = event.touches[0];
+                const headerHeight = 80;
+                if (touch.clientY > headerHeight) return;
+            }
+
+            modalTouchStartY = event.touches[0].clientY;
+            modalTouchCurrentY = modalTouchStartY;
+            isModalDragging = true;
+        }
+
+        function handleModalTouchMove(event) {
+            if (!isModalDragging) return;
+
+            modalTouchCurrentY = event.touches[0].clientY;
+            const deltaY = modalTouchCurrentY - modalTouchStartY;
+
+            // Only allow dragging down
+            if (deltaY > 0) {
+                const sheet = document.getElementById('wordModalSheet');
+                sheet.style.transform = 'translateY(' + deltaY + 'px)';
+                sheet.style.transition = 'none';
+
+                // Reduce overlay opacity as we drag
+                const overlay = document.getElementById('wordModal');
+                const opacity = Math.max(0, 1 - (deltaY / 400));
+                overlay.style.background = 'rgba(0, 0, 0, ' + (0.4 * opacity) + ')';
+            }
+        }
+
+        function handleModalTouchEnd(event) {
+            if (!isModalDragging) return;
+            isModalDragging = false;
+
+            const deltaY = modalTouchCurrentY - modalTouchStartY;
+            const sheet = document.getElementById('wordModalSheet');
+            const overlay = document.getElementById('wordModal');
+
+            sheet.style.transition = 'transform 0.3s cubic-bezier(0.32, 0.72, 0, 1)';
+            overlay.style.transition = 'background 0.3s ease';
+            overlay.style.background = '';
+
+            // If dragged more than 100px or with velocity, close
+            if (deltaY > 100) {
+                closeWordModal();
+            } else {
+                sheet.style.transform = '';
+            }
         }
         
         // Tab functionality
@@ -120445,15 +120890,23 @@
         // Bottom Tab Bar functionality
         document.querySelectorAll('.tab-bar-btn').forEach(btn => {
             btn.addEventListener('click', () => {
+                // Haptic feedback on tab switch
+                triggerHaptic('light');
+
                 document.querySelectorAll('.tab-bar-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                
+
                 btn.classList.add('active');
                 document.getElementById(btn.dataset.tab + '-tab').classList.add('active');
                 activeTab = btn.dataset.tab;
             });
         });
         
+        // Add haptic feedback to all game buttons
+        document.querySelectorAll('.game-btn').forEach(btn => {
+            btn.addEventListener('click', () => triggerHaptic('light'));
+        });
+
         // Classic Mode
         document.getElementById('classic-new').addEventListener('click', generateClassicQuestion);
         document.getElementById('classic-submit').addEventListener('click', checkClassicAnswer);
@@ -120580,16 +121033,13 @@
             state.totalQuestions++;
             if (isCorrect) state.correctAnswers++;
             
-            // Quick feedback for speed mode
+            // Quick feedback for speed mode (no scroll)
             const feedback = document.createElement('div');
             feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
             feedback.innerHTML = isCorrect ? '✅ Correct!' : '❌ ' + state.currentWord.meaning;
-            
             document.getElementById('speed-feedback').innerHTML = '';
             document.getElementById('speed-feedback').appendChild(feedback);
-            
             updateScores('speed');
-            
             setTimeout(() => {
                 if (state.isActive) {
                     generateSpeedQuestion();
@@ -120957,20 +121407,23 @@
         function displayOptions(containerId, options, onSelect) {
             const optionsArea = document.getElementById(containerId);
             optionsArea.innerHTML = '';
-            
+
             options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'choice-option';
-                optionDiv.textContent = (index + 1) + '. ' + option;
-                
+                optionDiv.textContent = option;
+
                 optionDiv.onclick = function() {
+                    // Haptic feedback on selection
+                    triggerHaptic('light');
+
                     document.querySelectorAll('#' + containerId + ' .choice-option').forEach(opt => {
                         opt.classList.remove('selected');
                     });
                     optionDiv.classList.add('selected');
                     onSelect(option);
                 };
-                
+
                 optionsArea.appendChild(optionDiv);
             });
         }
@@ -121038,7 +121491,6 @@
         // Search functionality
         document.getElementById('dictionary-search-input').addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
-            
             if (searchTerm === '') {
                 filteredWords = allWords;
             } else {
@@ -121047,18 +121499,16 @@
                     wordData.meaning.toLowerCase().includes(searchTerm)
                 );
             }
-            
             renderDictionary(filteredWords);
         });
-        
-        // Initialize dictionary when tab is clicked
-        let dictionaryInitialized = false;
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            const originalListener = btn.onclick;
+
+        // Always show all words in dictionary tab by default
+        renderDictionary();
+        // Fix: Use correct selector for tab bar buttons
+        document.querySelectorAll('.tab-bar-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                if (btn.dataset.tab === 'dictionary' && !dictionaryInitialized) {
+                if (btn.dataset.tab === 'dictionary') {
                     renderDictionary();
-                    dictionaryInitialized = true;
                 }
             });
         });
