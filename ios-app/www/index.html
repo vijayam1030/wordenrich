@@ -8,202 +8,200 @@
     <meta name="apple-mobile-web-app-title" content="Word Games">
     <meta name="theme-color" content="#667eea" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
-    <title>🎮 Enhanced Word Games - Full Explanations</title>
+    <title>Word Enrich - Vocabulary Games</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        /* iOS Standard Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
         }
-        
-        @keyframes shake {
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes errorShake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
         }
-        
-        @keyframes correctPulse {
-            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
-            50% { transform: scale(1.05); box-shadow: 0 6px 25px rgba(16, 185, 129, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 0.5; }
+            100% { transform: scale(4); opacity: 0; }
         }
-        
-        @keyframes wrongShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            50% { transform: translateX(8px); }
-            75% { transform: translateX(-8px); }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(15px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(102, 126, 234, 0.5), 0 0 10px rgba(102, 126, 234, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 30px rgba(102, 126, 234, 0.5); }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 122, 255, 0.3); }
+            50% { box-shadow: 0 0 35px rgba(0, 122, 255, 0.5); }
         }
-        
+
+        @keyframes checkmark {
+            0% { stroke-dashoffset: 50; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes slideInStagger {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* iOS SF Symbols Font (fallback to system) */
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: local('-apple-system'), local('BlinkMacSystemFont'), local('SF Pro Display');
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            background: #f2f2f7;
+            margin: 0;
             padding: 0;
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            padding-top: env(safe-area-inset-top, 0px);
+            min-height: 100vh;
+            color: #1c1c1e;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
-            overflow: hidden;
         }
-        
+
         .game-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            min-height: 100vh;
+            background: #f2f2f7;
         }
-        
-        .game-header {
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        .game-title {
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-            text-shadow: none;
-            font-weight: 700;
-        }
-        
-        .game-subtitle {
-            font-size: 1.1em;
-            color: #666;
-        }
-        
-        .word-count {
-            font-size: 0.9em;
-            color: #888;
-            margin-top: 5px;
-        }
-        
+
         .tab-container {
-            flex: 1;
-            overflow: hidden;
-            background: white;
+            background: #f2f2f7;
+            min-height: 100vh;
             position: relative;
         }
-        
-        .tab-nav {
-            display: flex;
-            background: #f8f9fa;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
+
         /* Hide old top tab navigation */
         .tab-nav {
             display: none;
         }
-        
-        /* Bottom Tab Bar (iPhone Style) */
+
+        /* Bottom Tab Bar (iOS Standard) */
         .tab-bar {
             display: flex;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-            padding: 8px 0 12px 0;
-            padding-bottom: calc(12px + env(safe-area-inset-bottom));
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            background: rgba(249, 249, 249, 0.94);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-top: 0.33px solid rgba(0, 0, 0, 0.3);
+            padding: 6px 0 8px 0;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 1000;
         }
-        
+
         .tab-bar-btn {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             background: none;
             border: none;
-            padding: 4px 4px 0 4px;
+            padding: 2px 4px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.1s ease;
             -webkit-tap-highlight-color: transparent;
-            min-height: 52px;
+            min-height: 49px;
         }
-        
+
         .tab-bar-btn:active {
-            transform: scale(0.9);
+            transform: scale(0.85);
         }
-        
+
         .tab-bar-icon {
-            font-size: 22px;
-            margin-bottom: 4px;
-            opacity: 0.5;
+            width: 28px;
+            height: 28px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-bar-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: #8e8e93;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
             transition: all 0.2s ease;
-            line-height: 1;
+        }
+
+        .tab-bar-btn.active .tab-bar-icon svg {
+            stroke: #007AFF;
+            transform: scale(1.08);
         }
         
         .tab-bar-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             color: #8e8e93;
-            transition: all 0.2s ease;
-            line-height: 1.2;
+            transition: color 0.2s ease;
+            line-height: 1;
             white-space: nowrap;
+            letter-spacing: 0.01em;
         }
-        
-        .tab-bar-btn.active .tab-bar-icon {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
+
         .tab-bar-btn.active .tab-bar-label {
-            color: #667eea;
+            color: #007AFF;
             font-weight: 600;
         }
         
@@ -241,245 +239,212 @@
         .tab-icon { font-size: 1.1em; margin-bottom: 2px; display: block; }
         .tab-label { font-size: 0.75em; display: block; }
         
-        .tab-content { 
-            display: none; 
-            padding: 12px 16px;
-            padding-bottom: 90px;
-            height: calc(100vh - 72px);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+        .tab-content {
+            display: none;
+            padding: 16px;
+            padding-bottom: 120px;
+            visibility: hidden;
         }
-        .tab-content.active { 
-            display: block;
-            animation: fadeIn 0.5s ease-out;
+
+        .tab-content.active {
+            display: block !important;
+            visibility: visible !important;
         }
-        
+
+        /* Hide game descriptions - not needed */
         .game-description {
-            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+            display: none;
         }
-        
-        .game-description h3 {
-            color: #1e293b;
-            margin-bottom: 8px;
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        
-        .game-description p {
-            color: #334155;
-        }
-        
+
         .question-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #007AFF;
             color: white;
-            padding: 24px 20px;
-            border-radius: 16px;
+            padding: 20px 16px;
+            border-radius: 14px;
             margin-bottom: 16px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             text-align: center;
-            line-height: 1.45;
-            letter-spacing: -0.3px;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
         }
-        
+
         .choice-option {
-            background: rgba(255, 255, 255, 0.95);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            background: white;
             color: #1c1c1e;
-            padding: 16px 20px;
-            margin: 10px 0;
-            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 8px 0;
+            border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        background 0.2s ease,
-                        box-shadow 0.2s ease;
             text-align: left;
             border: none;
             font-size: 16px;
-            line-height: 1.45;
-            min-height: 56px;
+            line-height: 1.4;
+            min-height: 48px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            user-select: none;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             -webkit-tap-highlight-color: transparent;
         }
 
-        .choice-option:hover {
-            background: rgba(255, 255, 255, 1);
-        }
-
         .choice-option:active {
-            transform: scale(0.97);
-            background: rgba(0, 122, 255, 0.1);
+            transform: scale(0.98);
+            background: #f0f0f0;
         }
 
         .choice-option.selected {
             background: #007AFF;
             color: white;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
-            transform: scale(1.01);
         }
 
-        .choice-option.processing {
-            background: #007AFF;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
+        .options-area {
+            margin-bottom: 12px;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.85; }
+        .score-item {
+            text-align: center;
+            flex: 1;
         }
-        
-        .score-board {
-            display: flex;
-            justify-content: space-around;
-            background: #f7fafc;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+
+        .score-number {
+            font-size: 22px;
+            font-weight: 700;
+            color: #007AFF;
         }
-        
-        .score-item { text-align: center; flex: 1; min-width: 70px; }
-        .score-number { font-size: 1.6em; font-weight: bold; color: #667eea; }
-        .score-label { color: #666; font-size: 0.8em; }
-        
+
+        .score-label {
+            color: #8e8e93;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
         .btn-group {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             justify-content: center;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        
-        .game-btn {
-            padding: 14px 28px;
-            font-size: 17px;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        opacity 0.15s ease;
-            font-weight: 600;
-            min-width: 120px;
-            min-height: 50px;
-            user-select: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            -webkit-tap-highlight-color: transparent;
+            padding: 16px 0;
         }
 
-        .game-btn:hover {
-            opacity: 0.9;
+        .game-btn {
+            padding: 14px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            min-height: 48px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .game-btn:active {
             transform: scale(0.96);
-            opacity: 0.85;
         }
 
         .primary-btn {
             background: #007AFF;
             color: white;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
         }
-        
+
+        /* Feedback container */
+        #classic-feedback,
+        #speed-feedback,
+        #quiz-feedback,
+        #battle-feedback,
+        #endurance-feedback {
+            flex-shrink: 0;
+        }
+
         .feedback {
-            padding: 16px 20px;
-            border-radius: 14px;
-            margin: 12px 0;
-            font-size: 17px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin: 6px 0;
+            font-size: 14px;
             font-weight: 600;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            animation: feedbackPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            gap: 6px;
         }
 
-        @keyframes feedbackPop {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+        .feedback-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feedback::before {
+            display: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .correct {
-            background: #34c759;
+            background: #34C759;
             color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.4);
         }
 
         .incorrect {
-            background: #ff3b30;
+            background: #FF3B30;
             color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);
-        }
-        
-        /* Compact inline feedback card - iOS Style */
-        .word-explanation {
-            background: rgba(255, 255, 255, 0.95);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            padding: 16px;
-            border-radius: 16px;
-            margin: 12px 0;
-            text-align: center;
-            border: none;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            animation: feedbackAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes feedbackAppear {
-            from { opacity: 0; transform: scale(0.9) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        /* Compact word explanation card */
+        .word-explanation {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin: 6px 0;
+            text-align: center;
+            flex-shrink: 0;
         }
 
         .word-title {
-            font-size: 1.2em;
+            font-size: 17px;
             font-weight: 700;
             color: #007AFF;
-            margin-bottom: 8px;
-            letter-spacing: -0.3px;
+            margin-bottom: 4px;
         }
 
         .definition-compact {
-            font-size: 15px;
+            font-size: 13px;
             color: #3c3c43;
-            line-height: 1.5;
-            margin-bottom: 14px;
-            opacity: 0.8;
+            line-height: 1.4;
+            margin-bottom: 8px;
         }
 
         .learn-more-btn {
             background: #007AFF;
             color: white;
             border: none;
-            padding: 14px 32px;
-            border-radius: 14px;
-            font-size: 17px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            min-height: 50px;
-            min-width: 160px;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
-            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        opacity 0.15s ease;
             -webkit-tap-highlight-color: transparent;
         }
 
         .learn-more-btn:active {
-            transform: scale(0.96);
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
         /* iOS-style Bottom Sheet Modal */
@@ -512,13 +477,14 @@
 
         .word-modal {
             background: #f2f2f7;
-            border-radius: 20px 20px 0 0;
+            border-radius: 16px 16px 0 0;
             width: 100%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow: hidden;
             transform: translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+            box-shadow: 0 -10px 60px rgba(0, 0, 0, 0.2),
+                        0 -2px 10px rgba(0, 0, 0, 0.05);
             padding-bottom: env(safe-area-inset-bottom);
         }
 
@@ -535,51 +501,59 @@
             width: 36px;
             height: 5px;
             background: rgba(60, 60, 67, 0.3);
-            border-radius: 3px;
-            margin: 8px auto 4px;
+            border-radius: 2.5px;
+            margin: 6px auto 0;
         }
 
         .modal-header {
-            background: transparent;
+            background: #f2f2f7;
             color: #000;
-            padding: 8px 20px 16px;
+            padding: 12px 20px 20px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 10;
-            background: #f2f2f7;
         }
 
         .modal-word {
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 700;
-            letter-spacing: -0.4px;
-            color: #000;
-            margin-top: 8px;
+            letter-spacing: -0.6px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 6px;
         }
 
         .modal-close {
             position: absolute;
-            top: 12px;
+            top: 14px;
             right: 16px;
-            background: rgba(60, 60, 67, 0.1);
+            background: rgba(120, 120, 128, 0.12);
             border: none;
-            color: #007AFF;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            font-size: 20px;
-            font-weight: 300;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
             -webkit-tap-highlight-color: transparent;
         }
 
+        .modal-close svg {
+            width: 12px;
+            height: 12px;
+            stroke: #8e8e93;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
         .modal-close:active {
-            background: rgba(60, 60, 67, 0.2);
+            background: rgba(120, 120, 128, 0.2);
+            transform: scale(0.9);
         }
 
         .modal-scroll-content {
@@ -590,168 +564,151 @@
         }
 
         .modal-body {
-            padding: 0 16px 24px;
+            padding: 0 16px 32px;
         }
 
         .modal-section {
-            margin-bottom: 12px;
-            padding: 16px;
+            margin-bottom: 16px;
+            padding: 18px;
             background: white;
-            border-radius: 14px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            border-radius: 16px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            animation: cardAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
         }
+
+        .modal-section:nth-child(1) { animation-delay: 0.1s; }
+        .modal-section:nth-child(2) { animation-delay: 0.15s; }
+        .modal-section:nth-child(3) { animation-delay: 0.2s; }
+        .modal-section:nth-child(4) { animation-delay: 0.25s; }
+        .modal-section:nth-child(5) { animation-delay: 0.3s; }
 
         .modal-section-title {
             font-weight: 600;
-            color: #007AFF;
-            margin-bottom: 10px;
+            color: #8e8e93;
+            margin-bottom: 12px;
             font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+        }
+
+        .modal-section-title .section-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
         }
 
         .modal-section-content {
             color: #1c1c1e;
-            line-height: 1.55;
+            line-height: 1.6;
             font-size: 17px;
             letter-spacing: -0.2px;
         }
 
         .synonym-tag, .antonym-tag {
-            display: inline-block;
-            padding: 8px 14px;
-            margin: 4px;
-            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 16px;
+            margin: 5px;
+            border-radius: 22px;
             font-size: 15px;
-            font-weight: 500;
-            transition: transform 0.15s ease;
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
         }
 
         .synonym-tag:active, .antonym-tag:active {
-            transform: scale(0.95);
+            transform: scale(0.92);
         }
 
         .synonym-tag {
-            background: #d1fae5;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
             color: #065f46;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
         }
 
         .antonym-tag {
-            background: #fee2e2;
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
             color: #991b1b;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
         }
 
         .example-sentence {
-            background: rgba(0, 122, 255, 0.08);
-            padding: 14px 16px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(88, 86, 214, 0.08) 100%);
+            padding: 16px 18px;
+            border-radius: 14px;
             font-style: italic;
-            border-left: none;
-            margin: 8px 0;
+            margin: 10px 0;
             font-size: 16px;
             color: #1c1c1e;
-            line-height: 1.5;
+            line-height: 1.55;
+            position: relative;
+        }
+
+        .example-sentence::before {
+            content: '"';
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-size: 28px;
+            color: #007AFF;
+            opacity: 0.3;
+            font-family: Georgia, serif;
         }
 
         .origin-box {
-            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-            padding: 16px;
-            border-radius: 12px;
-            border-left: none;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 18px;
+            border-radius: 14px;
             font-size: 16px;
-            color: #9a3412;
-            line-height: 1.5;
+            color: #92400e;
+            line-height: 1.55;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.15);
         }
         
-        .timer-display {
-            font-size: 2em;
-            font-weight: bold;
-            text-align: center;
-            margin: 15px 0;
-            color: #48bb78;
-        }
-        
-        .progress-bar {
-            background: #e2e8f0;
-            border-radius: 25px;
-            overflow: hidden;
-            height: 8px;
-            margin: 15px 0;
-        }
-        
-        .progress-fill {
-            background: linear-gradient(90deg, #48bb78, #38a169);
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-        
-        .battle-area {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .player-card {
-            flex: 1;
-            background: #f7fafc;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-        }
-        
-        .player-card.active {
-            border-color: #667eea;
-            background: #edf2f7;
-        }
-        
-        .player-name {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        
-        .endurance-stats {
-            background: #f7fafc;
-            padding: 15px;
-            border-radius: 12px;
-            margin: 15px 0;
-        }
-        
+        /* Hide unused elements */
+        .timer-display,
+        .progress-bar,
+        .battle-area,
+        .player-card,
+        .endurance-stats,
         .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 5px 0;
+            display: none;
         }
         
         /* Dictionary Styles */
         .dictionary-search {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
         }
-        
+
         .dictionary-search input {
             width: 100%;
-            padding: 12px 15px;
-            font-size: 1em;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 15px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
             outline: none;
             transition: border-color 0.3s;
         }
-        
+
         .dictionary-search input:focus {
-            border-color: #667eea;
+            border-color: #007AFF;
         }
-        
+
         .dictionary-stats {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 20px;
-            padding: 15px;
+            margin-bottom: 10px;
+            padding: 10px;
+            flex-shrink: 0;
             background: linear-gradient(135deg, #e0e7ff 0%, #fae8ff 100%);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
@@ -776,48 +733,44 @@
         }
         
         .word-list {
-            max-height: none;
-            overflow-y: visible;
-            padding-bottom: 20px;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 10px;
+            min-height: 0;
         }
         
         .word-item {
-            background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: slideInRight 0.4s ease-out;
-        }
-        
-        .word-item:hover {
-            transform: translateX(8px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-            border-left-color: #f093fb;
-        }
-        
-        .word-item-header {
-            font-size: 1.3em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 12px;
             margin-bottom: 8px;
+            border-radius: 10px;
+            border-left: 3px solid #007AFF;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
         }
-        
+
+        .word-item:active {
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .word-item-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: #007AFF;
+            margin-bottom: 4px;
+        }
+
         .word-item-meaning {
-            color: #333;
-            margin-bottom: 10px;
-            line-height: 1.5;
+            color: #3c3c43;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 6px;
         }
-        
+
         .word-item-details {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 8px;
+            font-size: 12px;
+            color: #8e8e93;
+            margin-top: 4px;
         }
         
         .word-item-detail-section {
@@ -936,35 +889,9 @@
                 padding: 10px;
             }
             .word-list {
-                max-height: 70vh;
+                flex: 1;
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
-            }
-            .word-item {
-                padding: 14px;
-                margin-bottom: 12px;
-                border-radius: 10px;
-            }
-            .word-item-header {
-                font-size: 1.25em;
-            }
-            .word-item-meaning {
-                font-size: 0.95em;
-            }
-            .word-item-details {
-                font-size: 0.85em;
-            }
-            .dictionary-search input {
-                padding: 14px 16px;
-                font-size: 1em;
-                border-radius: 10px;
-            }
-            .dictionary-stats {
-                padding: 12px;
-                gap: 15px;
-            }
-            .dictionary-stats .stat-number {
-                font-size: 1.6em;
             }
         }
         
@@ -992,40 +919,33 @@
                 font-size: 0.65em;
             }
             .tab-content {
-                padding: 12px;
+                padding: 10px 12px;
             }
             .question-card {
-                font-size: 1em;
+                padding: 14px 12px;
+                font-size: 16px;
             }
             .choice-option {
-                font-size: 0.9em;
+                font-size: 13px;
+                padding: 10px 12px;
             }
             .game-btn {
-                min-width: 100px;
-                font-size: 0.9em;
-            }
-            .word-item {
-                padding: 12px;
-            }
-            .word-item-header {
-                font-size: 1.15em;
-            }
-            .dictionary-stats .stat-number {
-                font-size: 1.4em;
+                font-size: 14px;
+                padding: 10px 16px;
             }
         }
         
         @media (hover: none) and (pointer: coarse) {
             .choice-option {
-                min-height: 56px;
-                padding: 16px 20px;
+                min-height: 44px;
+                padding: 12px 14px;
             }
             .choice-option:active {
                 transform: scale(0.97);
             }
             .game-btn {
-                min-height: 50px;
-                padding: 14px 24px;
+                min-height: 44px;
+                padding: 12px 20px;
             }
             .game-btn:active {
                 transform: scale(0.97);
@@ -1091,42 +1011,43 @@
             }
             
             .game-description {
-                background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+                background: rgba(44, 44, 46, 0.9);
             }
-            
+
             .game-description h3 {
-                color: #818cf8;
+                color: #fff;
             }
-            
+
+            .game-description h3::before {
+                background: linear-gradient(180deg, #0a84ff, #5e5ce6);
+            }
+
             .game-description p {
-                color: #cbd5e1;
-            }
-            
-            .question-area {
-                background: linear-gradient(135deg, #334155, #475569);
-                color: #f1f5f9;
-            }
-            
-            .choice-btn {
-                background: #334155;
-                color: #f1f5f9;
-                border-color: #475569;
+                color: #ebebf5;
+                opacity: 0.6;
             }
 
-            .choice-btn:hover {
-                background: #475569;
-                border-color: #64748b;
+            .question-card {
+                background: linear-gradient(145deg, #0a84ff 0%, #5e5ce6 100%);
             }
 
-            .choice-btn.selected {
-                background: rgba(129, 140, 248, 0.2);
-                border-color: #818cf8;
+            .score-board {
+                background: rgba(44, 44, 46, 0.9);
+            }
+
+            .score-number {
+                color: #0a84ff;
+            }
+
+            .score-label {
+                color: #ebebf5;
+                opacity: 0.6;
             }
 
             .choice-option {
-                background: rgba(44, 44, 46, 0.95);
+                background: rgba(58, 58, 60, 0.98);
                 color: #fff;
-                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
 
             .choice-option:active {
@@ -1134,43 +1055,30 @@
             }
 
             .choice-option.selected {
-                background: #0a84ff;
+                background: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
                 color: white;
             }
 
             .feedback.correct {
-                background: #30d158;
+                background: linear-gradient(135deg, #30d158 0%, #28b34a 100%);
             }
 
             .feedback.incorrect {
-                background: #ff453a;
+                background: linear-gradient(135deg, #ff453a 0%, #e53e35 100%);
             }
-            
-            .stats {
-                background: #334155;
-            }
-            
-            .stat-value {
-                color: #818cf8;
-            }
-            
-            .stat-label {
-                color: #cbd5e1;
-            }
-            
+
             .game-btn {
-                background: linear-gradient(135deg, #818cf8, #a78bfa);
-            }
-            
-            .feedback {
-                background: #334155;
-                border-color: #475569;
+                background: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
             }
 
             .word-explanation {
-                background: rgba(44, 44, 46, 0.95);
-                -webkit-backdrop-filter: blur(20px);
-                backdrop-filter: blur(20px);
+                background: rgba(44, 44, 46, 0.98);
+            }
+
+            .word-title {
+                background: linear-gradient(135deg, #0a84ff, #5e5ce6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
             .word-title {
@@ -1308,16 +1216,24 @@
             
             /* Bottom Tab Bar Dark Mode */
             .tab-bar {
-                background: rgba(30, 41, 59, 0.95);
-                border-top-color: rgba(255, 255, 255, 0.1);
+                background: rgba(28, 28, 30, 0.94);
+                border-top-color: rgba(255, 255, 255, 0.08);
             }
-            
+
+            .tab-bar-icon svg {
+                stroke: #8e8e93;
+            }
+
+            .tab-bar-btn.active .tab-bar-icon svg {
+                stroke: #0a84ff;
+            }
+
             .tab-bar-label {
-                color: #94a3b8;
+                color: #8e8e93;
             }
-            
+
             .tab-bar-btn.active .tab-bar-label {
-                color: #818cf8;
+                color: #0a84ff;
             }
         }
         
@@ -1334,11 +1250,11 @@
     </style>
 </head>
 <body>
-    <div class="game-container">
+    <div class="game-container" style="overflow: hidden; min-height: 100vh; display: flex; flex-direction: column;">
         <div class="tab-container">
             <!-- Classic Mode -->
             <div class="tab-content active" id="classic-tab">
-                <div class="score-board">
+                <div class="score-board ios-card">
                     <div class="score-item">
                         <div class="score-number" id="classic-correct">0</div>
                         <div class="score-label">Correct</div>
@@ -1354,32 +1270,27 @@
                 </div>
                 
                 <div class="question-card" id="classic-question">
-                    Click "New Question" to start learning!
+                    <span id="classic-question-text">Tap "New Question" to start!</span>
                 </div>
-                
-                <div id="classic-options-area"></div>
-                
-                <div class="btn-group">
-                    <button class="game-btn primary-btn" id="classic-submit" disabled style="display: none;">Processing...</button>
-                    <button class="game-btn primary-btn" id="classic-new">New Question 🎲</button>
-                </div>
-                
+
+                <div class="options-area" id="classic-options-area"></div>
+                                <div id="classic-feedback"></div>
                 <div id="classic-feedback"></div>
+
+                <div id="classic-feedback"></div>
+
+                <div class="btn-group">
+                    <button class="game-btn primary-btn ios-btn" id="classic-new">New Question</button>
+                </div>
             </div>
             
             <!-- Speed Challenge -->
             <div class="tab-content" id="speed-tab">
-                <div class="game-description">
-                    <h3>⚡ Speed Challenge</h3>
-                    <p>Quick vocabulary test with instant explanations. Learn fast!</p>
-                </div>
-                
-                <div class="timer-display" id="speed-timer">60</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="speed-progress" style="width: 100%"></div>
-                </div>
-                
-                <div class="score-board">
+                <div class="score-board ios-card">
+                    <div class="score-item">
+                        <div class="score-number" id="speed-timer">60</div>
+                        <div class="score-label">Time</div>
+                    </div>
                     <div class="score-item">
                         <div class="score-number" id="speed-correct">0</div>
                         <div class="score-label">Correct</div>
@@ -1388,28 +1299,26 @@
                         <div class="score-number" id="speed-total">0</div>
                         <div class="score-label">Total</div>
                     </div>
-                    <div class="score-item">
-                        <div class="score-number" id="speed-wpm">0</div>
-                        <div class="score-label">WPM</div>
-                    </div>
                 </div>
-                
+
                 <div class="question-card" id="speed-question">
-                    Click "Start Speed Challenge" to begin!
+                    <span id="speed-question-text">Tap "Start" to begin!</span>
                 </div>
-                
-                <div id="speed-options-area"></div>
-                
-                <div class="btn-group">
-                    <button class="game-btn primary-btn" id="speed-start">Start Challenge ⚡</button>
-                </div>
-                
+
+                <div class="options-area" id="speed-options-area"></div>
+                                <div id="speed-feedback"></div>
                 <div id="speed-feedback"></div>
+
+                <div id="speed-feedback"></div>
+
+                <div class="btn-group">
+                    <button class="game-btn primary-btn ios-btn" id="speed-start">Start</button>
+                </div>
             </div>
             
             <!-- Quiz Mode -->
             <div class="tab-content" id="quiz-tab">
-                <div class="score-board">
+                <div class="score-board ios-card">
                     <div class="score-item">
                         <div class="score-number" id="quiz-progress">0/10</div>
                         <div class="score-label">Progress</div>
@@ -1423,97 +1332,118 @@
                         <div class="score-label">Grade</div>
                     </div>
                 </div>
-                
-                <div class="progress-bar">
-                    <div class="progress-fill" id="quiz-progress-bar" style="width: 0%"></div>
-                </div>
-                
+
                 <div class="question-card" id="quiz-question">
-                    Click "Start Quiz" to begin!
+                    <span id="quiz-question-text">Tap "Start" to begin!</span>
                 </div>
-                
-                <div id="quiz-options-area"></div>
-                
-                <div class="btn-group">
-                    <button class="game-btn primary-btn" id="quiz-start">Start Quiz 🧠</button>
-                    <button class="game-btn primary-btn" id="quiz-next" disabled>Next Question →</button>
-                </div>
-                
+
+                <div class="options-area" id="quiz-options-area"></div>
+                                <div id="quiz-feedback"></div>
                 <div id="quiz-feedback"></div>
+
+                <div id="quiz-feedback"></div>
+
+                <div class="btn-group">
+                    <button class="game-btn primary-btn ios-btn" id="quiz-start">Start</button>
+                    <button class="game-btn primary-btn ios-btn" id="quiz-next" style="display:none;">Next</button>
+                </div>
             </div>
             
             <!-- Word Battle -->
             <div class="tab-content" id="battle-tab">
-                <div class="game-description">
-                    <h3>⚔️ Word Battle</h3>
-                    <p>Competitive learning! Each answer reveals detailed word information.</p>
-                </div>
-                
-                <div class="battle-area">
-                    <div class="player-card active" id="player1-card">
-                        <div class="player-name">Player 1</div>
+                <div class="score-board ios-card">
+                    <div class="score-item">
                         <div class="score-number" id="battle-p1-score">0</div>
+                        <div class="score-label">Player 1</div>
                     </div>
-                    <div class="player-card" id="player2-card">
-                        <div class="player-name">Player 2</div>
+                    <div class="score-item">
+                        <div class="score-number">vs</div>
+                        <div class="score-label">First to 5</div>
+                    </div>
+                    <div class="score-item">
                         <div class="score-number" id="battle-p2-score">0</div>
+                        <div class="score-label">Player 2</div>
                     </div>
                 </div>
-                
+
                 <div class="question-card" id="battle-question">
-                    Click "Start Battle" to begin the learning battle!
+                    <span id="battle-question-text">Tap "Start" to begin!</span>
                 </div>
-                
-                <div id="battle-options-area"></div>
-                
-                <div class="btn-group">
-                    <button class="game-btn primary-btn" id="battle-start">Start Battle ⚔️</button>
-                    <button class="game-btn primary-btn" id="battle-reset">Reset Game 🔄</button>
-                </div>
-                
+
+                <div class="options-area" id="battle-options-area"></div>
+                                <div id="battle-feedback"></div>
                 <div id="battle-feedback"></div>
+
+                <div id="battle-feedback"></div>
+
+                <div class="btn-group">
+                    <button class="game-btn primary-btn ios-btn" id="battle-start">Start</button>
+                    <button class="game-btn primary-btn ios-btn" id="battle-reset">Reset</button>
+                </div>
             </div>
-            
+
             <!-- Endurance Mode -->
             <div class="tab-content" id="endurance-tab">
-                <div class="game-description">
-                    <h3>🏃 Endurance Mode</h3>
-                    <p>Survival learning mode with comprehensive word explanations at every step!</p>
-                </div>
-                
-                <div class="endurance-stats">
-                    <div class="stat-row">
-                        <span>Level:</span>
-                        <span id="endurance-level">1</span>
+                <div class="score-board ios-card">
+                    <div class="score-item">
+                        <div class="score-number" id="endurance-level">1</div>
+                        <div class="score-label">Level</div>
                     </div>
-                    <div class="stat-row">
-                        <span>Lives:</span>
-                        <span id="endurance-lives">❤️❤️❤️</span>
+                    <div class="score-item">
+                        <div class="score-number" id="endurance-lives">3</div>
+                        <div class="score-label">Lives</div>
                     </div>
-                    <div class="stat-row">
-                        <span>Score:</span>
-                        <span id="endurance-score">0</span>
+                    <div class="score-item">
+                        <div class="score-number" id="endurance-score">0</div>
+                        <div class="score-label">Score</div>
                     </div>
                 </div>
-                
+
                 <div class="question-card" id="endurance-question">
-                    Click "Start Endurance" to test your vocabulary limits!
+                    <span id="endurance-question-text">Tap "Start" to begin!</span>
                 </div>
                 
-                <div id="endurance-options-area"></div>
-                
-                <div class="btn-group">
-                    <button class="game-btn primary-btn" id="endurance-start">Start Endurance 🏃</button>
-                    <button class="game-btn primary-btn" id="endurance-restart">Restart 🔄</button>
-                </div>
-                
+                <div class="options-area" id="endurance-options-area"></div>
+                                <div id="endurance-feedback"></div>
+                        .ios-card {
+                            border-radius: 18px;
+                            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08), 0 1.5px 4px 0 rgba(0,0,0,0.04);
+                            background: #fff;
+                            margin-bottom: 18px;
+                        }
+                        @media (prefers-color-scheme: dark) {
+                            .ios-card {
+                                background: #23232b;
+                                box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18), 0 1.5px 4px 0 rgba(0,0,0,0.10);
+                            }
+                        }
+                        .ios-btn {
+                            border-radius: 12px;
+                            font-weight: 600;
+                            letter-spacing: 0.01em;
+                            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
+                            transition: background 0.2s, box-shadow 0.2s;
+                        }
+                        .ios-btn:active {
+                            background: #e5e5ea;
+                        }
+                        .tab-content {
+                            overflow: hidden !important;
+                        }
                 <div id="endurance-feedback"></div>
+
+                <div id="endurance-feedback"></div>
+
+                <div class="btn-group">
+                    <button class="game-btn primary-btn" id="endurance-start">Start</button>
+                    <button class="game-btn primary-btn" id="endurance-restart">Restart</button>
+                </div>
             </div>
             
             <!-- Dictionary Tab -->
             <div class="tab-content" id="dictionary-tab">
                 <div class="dictionary-search">
-                    <input type="text" id="dictionary-search-input" placeholder="🔍 Search for a word..." />
+                    <input type="text" id="dictionary-search-input" placeholder="Search words..." />
                 </div>
                 
                 <div class="dictionary-stats">
@@ -1532,31 +1462,43 @@
                 </div>
             </div>
             
-            <!-- Bottom Tab Bar (iPhone Style) -->
+            <!-- Bottom Tab Bar (iOS Standard) -->
             <div class="tab-bar">
                 <button class="tab-bar-btn active" data-tab="classic">
-                    <span class="tab-bar-icon">📚</span>
-                    <span class="tab-bar-label">Classic</span>
+                    <span class="tab-bar-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </span>
+                    <span class="tab-bar-label">Learn</span>
                 </button>
                 <button class="tab-bar-btn" data-tab="speed">
-                    <span class="tab-bar-icon">⚡</span>
+                    <span class="tab-bar-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </span>
                     <span class="tab-bar-label">Speed</span>
                 </button>
                 <button class="tab-bar-btn" data-tab="quiz">
-                    <span class="tab-bar-icon">🧠</span>
+                    <span class="tab-bar-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </span>
                     <span class="tab-bar-label">Quiz</span>
                 </button>
                 <button class="tab-bar-btn" data-tab="battle">
-                    <span class="tab-bar-icon">⚔️</span>
+                    <span class="tab-bar-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span>
                     <span class="tab-bar-label">Battle</span>
                 </button>
                 <button class="tab-bar-btn" data-tab="endurance">
-                    <span class="tab-bar-icon">🏃</span>
+                    <span class="tab-bar-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </span>
                     <span class="tab-bar-label">Endure</span>
                 </button>
                 <button class="tab-bar-btn" data-tab="dictionary">
-                    <span class="tab-bar-icon">📖</span>
-                    <span class="tab-bar-label">Dict</span>
+                    <span class="tab-bar-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </span>
+                    <span class="tab-bar-label">Search</span>
                 </button>
             </div>
         </div>
@@ -1567,7 +1509,7 @@
         <div class="word-modal" id="wordModalSheet" ontouchstart="handleModalTouchStart(event)" ontouchmove="handleModalTouchMove(event)" ontouchend="handleModalTouchEnd(event)">
             <div class="modal-drag-handle"></div>
             <div class="modal-header">
-                <button class="modal-close" onclick="closeWordModal()">&#x2715;</button>
+                <button class="modal-close" onclick="closeWordModal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                 <div class="modal-word" id="modalWord"></div>
             </div>
             <div class="modal-scroll-content">
@@ -120678,11 +120620,11 @@
             const feedback = document.createElement('div');
             feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
 
-            // iOS-style concise feedback
+            // iOS-style feedback with icons
             if (isCorrect) {
-                feedback.innerHTML = '<span style="font-size:1.3em">✓</span> <strong>Correct!</strong>';
+                feedback.innerHTML = '<span class="feedback-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><strong>Correct!</strong>';
             } else {
-                feedback.innerHTML = '<span style="font-size:1.3em">✗</span> <strong>Incorrect</strong>';
+                feedback.innerHTML = '<span class="feedback-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><strong>Incorrect</strong>';
             }
 
             const feedbackArea = document.getElementById(elementId);
@@ -120748,14 +120690,14 @@
 
             // Definition
             bodyHTML += '<div class="modal-section">';
-            bodyHTML += '<div class="modal-section-title">💭 Definition</div>';
+            bodyHTML += '<div class="modal-section-title"><span class="section-icon">📖</span>Definition</div>';
             bodyHTML += '<div class="modal-section-content">' + word.meaning + '</div>';
             bodyHTML += '</div>';
 
             // Synonyms
             if (word.synonyms && word.synonyms.length > 0) {
                 bodyHTML += '<div class="modal-section">';
-                bodyHTML += '<div class="modal-section-title">🔗 Synonyms</div>';
+                bodyHTML += '<div class="modal-section-title"><span class="section-icon">≈</span>Synonyms</div>';
                 bodyHTML += '<div class="modal-section-content">';
                 word.synonyms.forEach(syn => {
                     bodyHTML += '<span class="synonym-tag">' + syn + '</span>';
@@ -120766,7 +120708,7 @@
             // Antonyms
             if (word.antonyms && word.antonyms.length > 0) {
                 bodyHTML += '<div class="modal-section">';
-                bodyHTML += '<div class="modal-section-title">⚡ Antonyms</div>';
+                bodyHTML += '<div class="modal-section-title"><span class="section-icon">≠</span>Antonyms</div>';
                 bodyHTML += '<div class="modal-section-content">';
                 word.antonyms.forEach(ant => {
                     bodyHTML += '<span class="antonym-tag">' + ant + '</span>';
@@ -120777,10 +120719,10 @@
             // Examples
             if (word.sentences && word.sentences.length > 0) {
                 bodyHTML += '<div class="modal-section">';
-                bodyHTML += '<div class="modal-section-title">💬 Example Usage</div>';
+                bodyHTML += '<div class="modal-section-title"><span class="section-icon">"</span>Examples</div>';
                 bodyHTML += '<div class="modal-section-content">';
                 word.sentences.forEach(sentence => {
-                    bodyHTML += '<div class="example-sentence">"' + sentence + '"</div>';
+                    bodyHTML += '<div class="example-sentence">' + sentence + '</div>';
                 });
                 bodyHTML += '</div></div>';
             }
@@ -120788,7 +120730,7 @@
             // Origin
             if (word.origin && word.origin.trim()) {
                 bodyHTML += '<div class="modal-section">';
-                bodyHTML += '<div class="modal-section-title">🌍 Word Origin</div>';
+                bodyHTML += '<div class="modal-section-title"><span class="section-icon">⏳</span>Origin</div>';
                 bodyHTML += '<div class="origin-box">' + word.origin + '</div>';
                 bodyHTML += '</div>';
             }
