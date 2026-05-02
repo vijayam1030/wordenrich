@@ -244,6 +244,9 @@
             padding: 16px;
             padding-bottom: 120px;
             visibility: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            max-height: calc(100vh - 180px);
         }
 
         .tab-content.active {
@@ -1250,7 +1253,7 @@
     </style>
 </head>
 <body>
-    <div class="game-container" style="overflow: hidden; min-height: 100vh; display: flex; flex-direction: column;">
+    <div class="game-container" style="min-height: 100vh; display: flex; flex-direction: column;">
         <div class="tab-container">
             <!-- Classic Mode -->
             <div class="tab-content active" id="classic-tab">
@@ -1274,13 +1277,11 @@
                 </div>
 
                 <div class="options-area" id="classic-options-area"></div>
-                                <div id="classic-feedback"></div>
-                <div id="classic-feedback"></div>
-
                 <div id="classic-feedback"></div>
 
                 <div class="btn-group">
                     <button class="game-btn primary-btn ios-btn" id="classic-new">New Question</button>
+                    <button class="game-btn primary-btn ios-btn" id="classic-submit" style="display:none;">Submit</button>
                 </div>
             </div>
             
@@ -1404,33 +1405,6 @@
                 </div>
                 
                 <div class="options-area" id="endurance-options-area"></div>
-                                <div id="endurance-feedback"></div>
-                        .ios-card {
-                            border-radius: 18px;
-                            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08), 0 1.5px 4px 0 rgba(0,0,0,0.04);
-                            background: #fff;
-                            margin-bottom: 18px;
-                        }
-                        @media (prefers-color-scheme: dark) {
-                            .ios-card {
-                                background: #23232b;
-                                box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18), 0 1.5px 4px 0 rgba(0,0,0,0.10);
-                            }
-                        }
-                        .ios-btn {
-                            border-radius: 12px;
-                            font-weight: 600;
-                            letter-spacing: 0.01em;
-                            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
-                            transition: background 0.2s, box-shadow 0.2s;
-                        }
-                        .ios-btn:active {
-                            background: #e5e5ea;
-                        }
-                        .tab-content {
-                            overflow: hidden !important;
-                        }
-                <div id="endurance-feedback"></div>
 
                 <div id="endurance-feedback"></div>
 
@@ -120851,7 +120825,8 @@
 
         // Classic Mode
         document.getElementById('classic-new').addEventListener('click', generateClassicQuestion);
-        document.getElementById('classic-submit').addEventListener('click', checkClassicAnswer);
+        const classicSubmitBtn = document.getElementById('classic-submit');
+        if (classicSubmitBtn) classicSubmitBtn.addEventListener('click', checkClassicAnswer);
         
         function generateClassicQuestion() {
             const state = gameStates.classic;
@@ -120859,7 +120834,7 @@
             state.selectedAnswer = null;
             
             document.getElementById('classic-feedback').innerHTML = '';
-            document.getElementById('classic-submit').disabled = true;
+            const _csBtn1 = document.getElementById('classic-submit'); if (_csBtn1) _csBtn1.disabled = true;
             
             const wrongMeanings = [];
             const usedMeanings = new Set([state.currentWord.meaning]);
@@ -120880,7 +120855,7 @@
             document.getElementById('classic-question').innerHTML = '<strong>What does "' + state.currentWord.word + '" mean?</strong>';
             displayOptions('classic-options-area', options, (option) => {
                 state.selectedAnswer = option;
-                document.getElementById('classic-submit').disabled = false;
+                const _csBtn2 = document.getElementById('classic-submit'); if (_csBtn2) _csBtn2.disabled = false;
                 // Add processing state
                 document.querySelectorAll('#classic-options-area .choice-option').forEach(opt => {
                     if (opt.classList.contains('selected')) {
@@ -120911,7 +120886,7 @@
             showDetailedFeedback('classic-feedback', isCorrect, state.currentWord, state.selectedAnswer);
             updateScores('classic');
             disableOptions('classic-options-area');
-            document.getElementById('classic-submit').disabled = true;
+            const _csBtn3 = document.getElementById('classic-submit'); if (_csBtn3) _csBtn3.disabled = true;
         }
         
         // Speed Challenge (shortened explanation due to time constraints)
@@ -121240,11 +121215,17 @@
         
         function startEndurance() {
             const state = gameStates.endurance;
+            if (state._gameOverTimeout) {
+                clearTimeout(state._gameOverTimeout);
+                state._gameOverTimeout = null;
+            }
             state.level = 1;
             state.lives = 3;
             state.score = 0;
             state.isActive = true;
             
+            document.getElementById('endurance-feedback').innerHTML = '';
+            document.getElementById('endurance-options-area').innerHTML = '';
             updateEnduranceDisplay();
             generateEnduranceQuestion();
             document.getElementById('endurance-start').disabled = true;
@@ -121296,7 +121277,10 @@
                 
                 if (state.lives <= 0) {
                     showDetailedFeedback('endurance-feedback', isCorrect, state.currentWord, selectedAnswer);
-                    setTimeout(() => {
+                    disableOptions('endurance-options-area');
+                    state.isActive = false;
+                    state._gameOverTimeout = setTimeout(() => {
+                        state._gameOverTimeout = null;
                         const gameOverFeedback = document.createElement('div');
                         gameOverFeedback.className = 'feedback incorrect';
                         gameOverFeedback.innerHTML = '<h3>💀 Game Over!</h3>' +
@@ -121305,7 +121289,6 @@
                             '<p>Keep learning with detailed explanations! 📚</p>';
                         
                         document.getElementById('endurance-feedback').appendChild(gameOverFeedback);
-                        state.isActive = false;
                         document.getElementById('endurance-start').disabled = false;
                     }, 3000);
                     return;
@@ -121333,6 +121316,10 @@
         
         function restartEndurance() {
             const state = gameStates.endurance;
+            if (state._gameOverTimeout) {
+                clearTimeout(state._gameOverTimeout);
+                state._gameOverTimeout = null;
+            }
             state.isActive = false;
             state.level = 1;
             state.lives = 3;
