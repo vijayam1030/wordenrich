@@ -157,6 +157,22 @@ def make_icon_layers():
         save(front, f"{ROOT}/App Icon.imagestack/Front.imagestacklayer/Content.imageset/front-{w}x{h}.png")
 
 
+def make_app_store_icon_layers():
+    w, h = 1280, 768
+    store_root = f"{ROOT}/App Icon - App Store.imagestack"
+
+    back = diagonal_gradient((w, h), PERIWINKLE, INDIGO)
+    save(back, f"{store_root}/Back.imagestacklayer/Content.imageset/icon-store-back-{w}x{h}.png")
+
+    middle = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    glow = radial_glow((w, h), WHITE, alpha=65, center=(w * 0.5, h * 0.4))
+    middle.alpha_composite(glow)
+    save(middle, f"{store_root}/Middle.imagestacklayer/Content.imageset/icon-store-middle-{w}x{h}.png")
+
+    front = draw_tiles_glyph((w, h), scale=1.0)
+    save(front, f"{store_root}/Front.imagestacklayer/Content.imageset/icon-store-front-{w}x{h}.png")
+
+
 def make_top_shelf():
     combos = [
         ("Top Shelf Image", [(1920, 720), (3840, 1440)]),
@@ -195,4 +211,5 @@ def make_top_shelf():
 
 if __name__ == "__main__":
     make_icon_layers()
+    make_app_store_icon_layers()
     make_top_shelf()
