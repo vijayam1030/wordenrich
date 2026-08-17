@@ -9,7 +9,7 @@ tvOS parallax depth.
 import math
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-ROOT = "WordEnrichTV/Assets.xcassets/AppIcon & Top Shelf Image.brandassets"
+ROOT = "WordEnrichTV/Assets.xcassets/AppIcon.brandassets"
 FONT_BOLD_ROUNDED = "/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf"
 FONT_ROUNDED = "/System/Library/Fonts/SFNSRounded.ttf"
 

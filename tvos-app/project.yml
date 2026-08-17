@@ -26,11 +26,16 @@ targets:
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationLandscapeRight
           - UIInterfaceOrientationLandscapeLeft
+        CFBundleIcons:
+          CFBundlePrimaryIcon: "App Icon"
+        TVTopShelfImage:
+          TVTopShelfPrimaryImage: "Top Shelf Image"
+          TVTopShelfPrimaryImageWide: "Top Shelf Image Wide"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.wordenrich.tv
         PRODUCT_NAME: WordEnrichTV
-        ASSETCATALOG_COMPILER_APPICON_NAME: "AppIcon & Top Shelf Image"
+        ASSETCATALOG_COMPILER_APPICON_NAME: "AppIcon"
         TARGETED_DEVICE_FAMILY: "3"
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"

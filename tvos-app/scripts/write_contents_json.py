@@ -3,7 +3,7 @@
 import json, os
 
 ROOT = "WordEnrichTV/Assets.xcassets"
-BRAND = f"{ROOT}/AppIcon & Top Shelf Image.brandassets"
+BRAND = f"{ROOT}/AppIcon.brandassets"
 
 
 def write(path, obj):
