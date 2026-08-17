@@ -19,13 +19,15 @@
 		882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1355F051612BA7FFA45BEF /* AppTheme.swift */; };
 		95361179232A26609B1E4B2B /* FlashCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4AB45AB30A38697D10AF5 /* FlashCardViewModel.swift */; };
 		9CDF2CAF943E3F38BB8979FE /* WordExplanationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8948254D0B2B5ABDC9601AC7 /* WordExplanationModal.swift */; };
+		AA095ADE9AF39792C78389BC /* MemoryMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219011DBD22D6EF8655B7726 /* MemoryMatchView.swift */; };
 		AC7B00E7DB74B4D606C9904D /* FlashCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B28546A34787D8F8FB91CAC /* FlashCardView.swift */; };
+		B1FD049E1AC32F2340864FAB /* MemoryTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B33638B05B084B30CA3BD /* MemoryTileView.swift */; };
 		BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093F611141A2869D01329E1 /* LearnView.swift */; };
 		CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDC7220B67C5A5693787A05 /* RootTabView.swift */; };
 		D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0C23219F434A3E2AA9B74 /* WordStore.swift */; };
 		D5A81584BF502E58151F9C91 /* WordDetailPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694F7E9F46C4266BE87C19D /* WordDetailPane.swift */; };
 		D9803A0141EC7EC5F5EBA75E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A90F83063333639AE5C99 /* Word.swift */; };
-		D9D0E68B9191F733BAE87470 /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */; };
+		E1DAABF810F0E7B677912C9E /* MemoryMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A20DA7225E12B060E1DAA8 /* MemoryMatchViewModel.swift */; };
 		F3321BD81B3F759AD8D66D15 /* WordEnrichTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,11 +37,12 @@
 		1694F7E9F46C4266BE87C19D /* WordDetailPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailPane.swift; sourceTree = "<group>"; };
 		1B973872EA876366839FB625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1F1355F051612BA7FFA45BEF /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		219011DBD22D6EF8655B7726 /* MemoryMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMatchView.swift; sourceTree = "<group>"; };
+		221B33638B05B084B30CA3BD /* MemoryTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTileView.swift; sourceTree = "<group>"; };
 		2FDC7220B67C5A5693787A05 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		4B28546A34787D8F8FB91CAC /* FlashCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardView.swift; sourceTree = "<group>"; };
 		544E03DD4B9D115C3B4EB11C /* WordEnrichTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WordEnrichTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC4AB45AB30A38697D10AF5 /* FlashCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewModel.swift; sourceTree = "<group>"; };
-		5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
 		68A5322FDF1F726C696F818C /* LearnGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnGameViewModel.swift; sourceTree = "<group>"; };
 		72805497FEDBB6A64F42AD1F /* FlashCardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardTile.swift; sourceTree = "<group>"; };
 		7C7A90F83063333639AE5C99 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		A152C837022175C3A6ADE43D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C983E25EBD53F5DE6F45341A /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		D1A81178E39C75C625AED41F /* DictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewModel.swift; sourceTree = "<group>"; };
+		E7A20DA7225E12B060E1DAA8 /* MemoryMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMatchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -62,10 +66,20 @@
 				974017DEBE96A7183B739C9D /* Dictionary */,
 				79879FE3963E176E9A223B25 /* FlashCards */,
 				309DDB66F064E8D4C18A148D /* Learn */,
-				BD894CCC450E8BD652609E44 /* Placeholder */,
+				2F0EEDA8E6CCC1367499F865 /* MemoryMatch */,
 				EB3A36B7EB47D2F5C29D300F /* Shared */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2F0EEDA8E6CCC1367499F865 /* MemoryMatch */ = {
+			isa = PBXGroup;
+			children = (
+				219011DBD22D6EF8655B7726 /* MemoryMatchView.swift */,
+				E7A20DA7225E12B060E1DAA8 /* MemoryMatchViewModel.swift */,
+				221B33638B05B084B30CA3BD /* MemoryTileView.swift */,
+			);
+			path = MemoryMatch;
 			sourceTree = "<group>";
 		};
 		309DDB66F064E8D4C18A148D /* Learn */ = {
@@ -131,14 +145,6 @@
 				936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		BD894CCC450E8BD652609E44 /* Placeholder */ = {
-			isa = PBXGroup;
-			children = (
-				5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */,
-			);
-			path = Placeholder;
 			sourceTree = "<group>";
 		};
 		BD9803E78CF1F7ED97F2BA28 /* WordEnrichTV */ = {
@@ -244,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */,
-				D9D0E68B9191F733BAE87470 /* ComingSoonView.swift in Sources */,
 				173410DF8F0939C917DDC577 /* DictionaryRowButtonStyle.swift in Sources */,
 				3EEA939FA2DFB7167A56C990 /* DictionaryView.swift in Sources */,
 				7E171789A040203F563A1CBA /* DictionaryViewModel.swift in Sources */,
@@ -253,6 +258,9 @@
 				95361179232A26609B1E4B2B /* FlashCardViewModel.swift in Sources */,
 				455A07F6DAF5A59BF9D54277 /* LearnGameViewModel.swift in Sources */,
 				BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */,
+				AA095ADE9AF39792C78389BC /* MemoryMatchView.swift in Sources */,
+				E1DAABF810F0E7B677912C9E /* MemoryMatchViewModel.swift in Sources */,
+				B1FD049E1AC32F2340864FAB /* MemoryTileView.swift in Sources */,
 				69F1E44533FD6F3D6604F1A6 /* OptionButtonStyle.swift in Sources */,
 				CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */,
 				64F63D696229161105634123 /* ScoreChip.swift in Sources */,

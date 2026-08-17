@@ -11,33 +11,8 @@ struct RootTabView: View {
             FlashCardView(store: store)
                 .tabItem { Label("Flash Cards", systemImage: "rectangle.stack.fill") }
 
-            ComingSoonView(
-                title: "Speed Challenge",
-                subtitle: "Race the clock and match as many words as you can before time runs out.",
-                systemImage: "bolt.fill"
-            )
-            .tabItem { Label("Speed", systemImage: "bolt.fill") }
-
-            ComingSoonView(
-                title: "Quiz Mode",
-                subtitle: "A graded ten-question run that ends with a final score and letter grade.",
-                systemImage: "checkmark.seal.fill"
-            )
-            .tabItem { Label("Quiz", systemImage: "checkmark.seal.fill") }
-
-            ComingSoonView(
-                title: "Word Battle",
-                subtitle: "Two players, one remote, one couch. First to five correct answers wins.",
-                systemImage: "person.2.fill"
-            )
-            .tabItem { Label("Battle", systemImage: "person.2.fill") }
-
-            ComingSoonView(
-                title: "Endurance",
-                subtitle: "Three lives and rising difficulty. See how far your vocabulary can take you.",
-                systemImage: "flame.fill"
-            )
-            .tabItem { Label("Endure", systemImage: "flame.fill") }
+            MemoryMatchView(store: store)
+                .tabItem { Label("Memory Match", systemImage: "square.grid.3x3.fill") }
 
             DictionaryView(store: store)
                 .tabItem { Label("Dictionary", systemImage: "text.book.closed.fill") }
