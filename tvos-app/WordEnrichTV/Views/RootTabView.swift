@@ -14,6 +14,12 @@ struct RootTabView: View {
             MemoryMatchView(store: store)
                 .tabItem { Label("Memory Match", systemImage: "square.grid.3x3.fill") }
 
+            FillBlankView(store: store)
+                .tabItem { Label("Fill Blank", systemImage: "text.quote") }
+
+            SpellItView(store: store)
+                .tabItem { Label("Spell It", systemImage: "textformat.abc") }
+
             DictionaryView(store: store)
                 .tabItem { Label("Dictionary", systemImage: "text.book.closed.fill") }
         }
