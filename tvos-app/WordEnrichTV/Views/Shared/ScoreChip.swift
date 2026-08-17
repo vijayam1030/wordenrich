@@ -4,16 +4,17 @@ struct ScoreChip: View {
     let value: String
     let label: String
     var tint: Color = .white
+    var compact: Bool = false
 
     var body: some View {
-        VStack(spacing: 6) {
+        HStack(spacing: 6) {
             Text(value)
-                .font(.system(size: 40, weight: .bold, design: .rounded))
+                .font(.system(size: compact ? 20 : 40, weight: .bold, design: .rounded))
                 .foregroundStyle(tint)
                 .contentTransition(.numericText())
             Text(label.uppercased())
-                .font(.system(size: 16, weight: .semibold))
-                .tracking(1.2)
+                .font(.system(size: compact ? 11 : 16, weight: .semibold))
+                .tracking(1)
                 .foregroundStyle(.white.opacity(0.6))
         }
         .frame(maxWidth: .infinity)

@@ -16,6 +16,7 @@
 		69F1E44533FD6F3D6604F1A6 /* OptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */; };
 		7E171789A040203F563A1CBA /* DictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A81178E39C75C625AED41F /* DictionaryViewModel.swift */; };
 		882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1355F051612BA7FFA45BEF /* AppTheme.swift */; };
+		9CDF2CAF943E3F38BB8979FE /* WordExplanationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8948254D0B2B5ABDC9601AC7 /* WordExplanationModal.swift */; };
 		BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093F611141A2869D01329E1 /* LearnView.swift */; };
 		CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDC7220B67C5A5693787A05 /* RootTabView.swift */; };
 		D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0C23219F434A3E2AA9B74 /* WordStore.swift */; };
@@ -38,6 +39,7 @@
 		7C7A90F83063333639AE5C99 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		7FE0C23219F434A3E2AA9B74 /* WordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStore.swift; sourceTree = "<group>"; };
 		8365D3F511209C88C036446B /* ScoreChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChip.swift; sourceTree = "<group>"; };
+		8948254D0B2B5ABDC9601AC7 /* WordExplanationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordExplanationModal.swift; sourceTree = "<group>"; };
 		9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButtonStyle.swift; sourceTree = "<group>"; };
 		936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEnrichTVApp.swift; sourceTree = "<group>"; };
 		93AEA1BACD870B156FB1A682 /* DictionaryRowButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryRowButtonStyle.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				68A5322FDF1F726C696F818C /* LearnGameViewModel.swift */,
 				0093F611141A2869D01329E1 /* LearnView.swift */,
 				9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */,
+				8948254D0B2B5ABDC9601AC7 /* WordExplanationModal.swift */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				D9803A0141EC7EC5F5EBA75E /* Word.swift in Sources */,
 				D5A81584BF502E58151F9C91 /* WordDetailPane.swift in Sources */,
 				F3321BD81B3F759AD8D66D15 /* WordEnrichTVApp.swift in Sources */,
+				9CDF2CAF943E3F38BB8979FE /* WordExplanationModal.swift in Sources */,
 				D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

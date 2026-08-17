@@ -15,6 +15,7 @@ final class LearnGameViewModel: ObservableObject {
     @Published private(set) var selected: String?
     @Published private(set) var isAnswered = false
     @Published private(set) var hasStarted = false
+    @Published var showExplanation = false
 
     @Published private(set) var correctCount = 0
     @Published private(set) var totalCount = 0
@@ -23,6 +24,7 @@ final class LearnGameViewModel: ObservableObject {
 
     private var usedWords: Set<String> = []
     private let store: WordStore
+    private var explanationTask: Task<Void, Never>?
 
     init(store: WordStore) {
         self.store = store
@@ -38,6 +40,9 @@ final class LearnGameViewModel: ObservableObject {
     }
 
     func nextQuestion() {
+        explanationTask?.cancel()
+        explanationTask = nil
+
         if usedWords.count > max(store.words.count - 5, 0) {
             usedWords.removeAll()
         }
@@ -52,6 +57,7 @@ final class LearnGameViewModel: ObservableObject {
         options = choices
         selected = nil
         isAnswered = false
+        showExplanation = false
     }
 
     func select(_ option: String) {
@@ -66,6 +72,23 @@ final class LearnGameViewModel: ObservableObject {
         } else {
             streak = 0
         }
+
+        explanationTask?.cancel()
+        explanationTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 550_000_000)
+            guard !Task.isCancelled else { return }
+            self?.showExplanation = true
+        }
+    }
+
+    func dismissExplanation() {
+        explanationTask?.cancel()
+        explanationTask = nil
+        showExplanation = false
+    }
+
+    func advanceToNext() {
+        nextQuestion()
     }
 
     func state(for option: String) -> OptionState {

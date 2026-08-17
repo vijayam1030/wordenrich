@@ -6,13 +6,13 @@ struct OptionButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 30, weight: .semibold, design: .rounded))
+            .font(.system(size: 32, weight: .semibold, design: .rounded))
             .multilineTextAlignment(.leading)
             .lineLimit(3)
             .foregroundStyle(foregroundColor)
-            .padding(.horizontal, 28)
-            .padding(.vertical, 22)
-            .frame(maxWidth: .infinity, minHeight: 130, alignment: .leading)
+            .padding(.horizontal, 32)
+            .padding(.vertical, 28)
+            .frame(maxWidth: .infinity, minHeight: 170, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(fillColor)
