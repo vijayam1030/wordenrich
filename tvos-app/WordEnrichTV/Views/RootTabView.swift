@@ -8,6 +8,9 @@ struct RootTabView: View {
             LearnView(store: store)
                 .tabItem { Label("Learn", systemImage: "brain.head.profile") }
 
+            FlashCardView(store: store)
+                .tabItem { Label("Flash Cards", systemImage: "rectangle.stack.fill") }
+
             ComingSoonView(
                 title: "Speed Challenge",
                 subtitle: "Race the clock and match as many words as you can before time runs out.",
