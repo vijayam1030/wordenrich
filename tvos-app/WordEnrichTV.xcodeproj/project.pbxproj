@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		455A07F6DAF5A59BF9D54277 /* LearnGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5322FDF1F726C696F818C /* LearnGameViewModel.swift */; };
+		53C96BEB5AB52330E4F4EC0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A152C837022175C3A6ADE43D /* Assets.xcassets */; };
+		5ED93DAF55E0DA7DA259F4B8 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 003ACDE8B8E6DA8C67CF1910 /* words.json */; };
+		64F63D696229161105634123 /* ScoreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365D3F511209C88C036446B /* ScoreChip.swift */; };
+		69F1E44533FD6F3D6604F1A6 /* OptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */; };
+		882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1355F051612BA7FFA45BEF /* AppTheme.swift */; };
+		BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093F611141A2869D01329E1 /* LearnView.swift */; };
+		CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDC7220B67C5A5693787A05 /* RootTabView.swift */; };
+		D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0C23219F434A3E2AA9B74 /* WordStore.swift */; };
+		D9803A0141EC7EC5F5EBA75E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A90F83063333639AE5C99 /* Word.swift */; };
+		D9D0E68B9191F733BAE87470 /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */; };
+		F3321BD81B3F759AD8D66D15 /* WordEnrichTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		003ACDE8B8E6DA8C67CF1910 /* words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
+		0093F611141A2869D01329E1 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		1B973872EA876366839FB625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1F1355F051612BA7FFA45BEF /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		2FDC7220B67C5A5693787A05 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		544E03DD4B9D115C3B4EB11C /* WordEnrichTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WordEnrichTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
+		68A5322FDF1F726C696F818C /* LearnGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnGameViewModel.swift; sourceTree = "<group>"; };
+		7C7A90F83063333639AE5C99 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		7FE0C23219F434A3E2AA9B74 /* WordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStore.swift; sourceTree = "<group>"; };
+		8365D3F511209C88C036446B /* ScoreChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChip.swift; sourceTree = "<group>"; };
+		9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButtonStyle.swift; sourceTree = "<group>"; };
+		936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEnrichTVApp.swift; sourceTree = "<group>"; };
+		A152C837022175C3A6ADE43D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1B9ED02E9C651587B49D0916 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2FDC7220B67C5A5693787A05 /* RootTabView.swift */,
+				309DDB66F064E8D4C18A148D /* Learn */,
+				BD894CCC450E8BD652609E44 /* Placeholder */,
+				EB3A36B7EB47D2F5C29D300F /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		309DDB66F064E8D4C18A148D /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				68A5322FDF1F726C696F818C /* LearnGameViewModel.swift */,
+				0093F611141A2869D01329E1 /* LearnView.swift */,
+				9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */,
+			);
+			path = Learn;
+			sourceTree = "<group>";
+		};
+		519CA9672D52488CEE464C2A = {
+			isa = PBXGroup;
+			children = (
+				BD9803E78CF1F7ED97F2BA28 /* WordEnrichTV */,
+				ECB57395EA841E0A78884FA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		845E9BC1CE729D1D5B119C4F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7C7A90F83063333639AE5C99 /* Word.swift */,
+				7FE0C23219F434A3E2AA9B74 /* WordStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		95D4E4DF6471A48C18F81501 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				003ACDE8B8E6DA8C67CF1910 /* words.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B3BD5584862617745D6FF996 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BD894CCC450E8BD652609E44 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */,
+			);
+			path = Placeholder;
+			sourceTree = "<group>";
+		};
+		BD9803E78CF1F7ED97F2BA28 /* WordEnrichTV */ = {
+			isa = PBXGroup;
+			children = (
+				A152C837022175C3A6ADE43D /* Assets.xcassets */,
+				1B973872EA876366839FB625 /* Info.plist */,
+				B3BD5584862617745D6FF996 /* App */,
+				845E9BC1CE729D1D5B119C4F /* Models */,
+				95D4E4DF6471A48C18F81501 /* Resources */,
+				1B9ED02E9C651587B49D0916 /* Views */,
+			);
+			path = WordEnrichTV;
+			sourceTree = "<group>";
+		};
+		EB3A36B7EB47D2F5C29D300F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1F1355F051612BA7FFA45BEF /* AppTheme.swift */,
+				8365D3F511209C88C036446B /* ScoreChip.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		ECB57395EA841E0A78884FA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				544E03DD4B9D115C3B4EB11C /* WordEnrichTV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB67D6626102193B98559C63 /* WordEnrichTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD180CBECA266E883486099B /* Build configuration list for PBXNativeTarget "WordEnrichTV" */;
+			buildPhases = (
+				A6FEBB2EBD625A0963E0477C /* Sources */,
+				EA3338ABBFFF81321F5724C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordEnrichTV;
+			packageProductDependencies = (
+			);
+			productName = WordEnrichTV;
+			productReference = 544E03DD4B9D115C3B4EB11C /* WordEnrichTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63DE6B3E60D0C9EB4B509DCB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					BB67D6626102193B98559C63 = {
+						DevelopmentTeam = KPNYT6G5XD;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E158D3EDAEE1BDE5C1B87A4B /* Build configuration list for PBXProject "WordEnrichTV" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 519CA9672D52488CEE464C2A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = ECB57395EA841E0A78884FA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB67D6626102193B98559C63 /* WordEnrichTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA3338ABBFFF81321F5724C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53C96BEB5AB52330E4F4EC0D /* Assets.xcassets in Resources */,
+				5ED93DAF55E0DA7DA259F4B8 /* words.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6FEBB2EBD625A0963E0477C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */,
+				D9D0E68B9191F733BAE87470 /* ComingSoonView.swift in Sources */,
+				455A07F6DAF5A59BF9D54277 /* LearnGameViewModel.swift in Sources */,
+				BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */,
+				69F1E44533FD6F3D6604F1A6 /* OptionButtonStyle.swift in Sources */,
+				CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */,
+				64F63D696229161105634123 /* ScoreChip.swift in Sources */,
+				D9803A0141EC7EC5F5EBA75E /* Word.swift in Sources */,
+				F3321BD81B3F759AD8D66D15 /* WordEnrichTVApp.swift in Sources */,
+				D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		314487C1F27FAD9B79BFFFA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = WordEnrichTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wordenrich.tv;
+				PRODUCT_NAME = WordEnrichTV;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		57A416C0B1ED941D2E0EC6EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KPNYT6G5XD;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		AFDE6123895EF6AEC8AC2DE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KPNYT6G5XD;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		E0BF9D476882E0E28FDABDE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = WordEnrichTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wordenrich.tv;
+				PRODUCT_NAME = WordEnrichTV;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD180CBECA266E883486099B /* Build configuration list for PBXNativeTarget "WordEnrichTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0BF9D476882E0E28FDABDE0 /* Debug */,
+				314487C1F27FAD9B79BFFFA8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E158D3EDAEE1BDE5C1B87A4B /* Build configuration list for PBXProject "WordEnrichTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57A416C0B1ED941D2E0EC6EF /* Debug */,
+				AFDE6123895EF6AEC8AC2DE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63DE6B3E60D0C9EB4B509DCB /* Project object */;
+}

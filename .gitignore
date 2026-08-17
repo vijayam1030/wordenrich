@@ -244,3 +244,8 @@ local_config.py
 # OS generated files
 .directory
 desktop.ini
+# tvOS / Xcode
+tvos-app/**/*.xcuserstate
+tvos-app/**/xcuserdata/
+tvos-app/DerivedData/
+!tvos-app/WordEnrichTV/Resources/words.json
