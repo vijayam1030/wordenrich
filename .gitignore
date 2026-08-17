@@ -249,3 +249,4 @@ tvos-app/**/*.xcuserstate
 tvos-app/**/xcuserdata/
 tvos-app/DerivedData/
 !tvos-app/WordEnrichTV/Resources/words.json
+!tvos-app/**/Contents.json

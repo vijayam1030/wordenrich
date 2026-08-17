@@ -35,19 +35,6 @@ def main():
             "info": {"version": 1, "author": "xcode"}
         })
 
-    top_level_path = f"{ROOT}/Contents.json"
-    with open(top_level_path) as f:
-        top_level = json.load(f)
-
-    assets = top_level["assets"]
-    if not any(a.get("filename") == "App Icon - App Store.imagestack" for a in assets):
-        assets.insert(0, {
-            "filename": "App Icon - App Store.imagestack",
-            "role": "primary-app-icon",
-            "size": "1280x768"
-        })
-    write(top_level_path, top_level)
-
 
 if __name__ == "__main__":
     main()

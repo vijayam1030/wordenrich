@@ -32,12 +32,12 @@ def main():
     os.makedirs(BRAND, exist_ok=True)
     write(f"{BRAND}/Contents.json", {
         "assets": [
-            {"filename": "App Icon.imagestack", "role": "primary-app-icon", "size": "400x240"},
-            {"filename": "Top Shelf Image.imageset", "role": "top-shelf-image", "size": "1920x720"},
-            {"filename": "Top Shelf Image Wide.imageset", "role": "top-shelf-image-wide", "size": "2320x720"},
+            {"filename": "App Icon - App Store.imagestack", "idiom": "tv", "role": "primary-app-icon", "size": "1280x768"},
+            {"filename": "App Icon.imagestack", "idiom": "tv", "role": "primary-app-icon", "size": "400x240"},
+            {"filename": "Top Shelf Image.imageset", "idiom": "tv", "role": "top-shelf-image", "size": "1920x720"},
+            {"filename": "Top Shelf Image Wide.imageset", "idiom": "tv", "role": "top-shelf-image-wide", "size": "2320x720"},
         ],
-        "info": {"version": 1, "author": "xcode"},
-        "properties": {"provides-namespace": True}
+        "info": {"version": 1, "author": "xcode"}
     })
 
     imagestack = f"{BRAND}/App Icon.imagestack"
