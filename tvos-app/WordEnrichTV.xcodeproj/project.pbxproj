@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		173410DF8F0939C917DDC577 /* DictionaryRowButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AEA1BACD870B156FB1A682 /* DictionaryRowButtonStyle.swift */; };
+		3EEA939FA2DFB7167A56C990 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983E25EBD53F5DE6F45341A /* DictionaryView.swift */; };
 		455A07F6DAF5A59BF9D54277 /* LearnGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5322FDF1F726C696F818C /* LearnGameViewModel.swift */; };
 		53C96BEB5AB52330E4F4EC0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A152C837022175C3A6ADE43D /* Assets.xcassets */; };
 		5ED93DAF55E0DA7DA259F4B8 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 003ACDE8B8E6DA8C67CF1910 /* words.json */; };
 		64F63D696229161105634123 /* ScoreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365D3F511209C88C036446B /* ScoreChip.swift */; };
 		69F1E44533FD6F3D6604F1A6 /* OptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */; };
+		7E171789A040203F563A1CBA /* DictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A81178E39C75C625AED41F /* DictionaryViewModel.swift */; };
 		882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1355F051612BA7FFA45BEF /* AppTheme.swift */; };
 		BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093F611141A2869D01329E1 /* LearnView.swift */; };
 		CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDC7220B67C5A5693787A05 /* RootTabView.swift */; };
 		D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0C23219F434A3E2AA9B74 /* WordStore.swift */; };
+		D5A81584BF502E58151F9C91 /* WordDetailPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694F7E9F46C4266BE87C19D /* WordDetailPane.swift */; };
 		D9803A0141EC7EC5F5EBA75E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A90F83063333639AE5C99 /* Word.swift */; };
 		D9D0E68B9191F733BAE87470 /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF41AD86AFFA19265BACB /* ComingSoonView.swift */; };
 		F3321BD81B3F759AD8D66D15 /* WordEnrichTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */; };
@@ -24,6 +28,7 @@
 /* Begin PBXFileReference section */
 		003ACDE8B8E6DA8C67CF1910 /* words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		0093F611141A2869D01329E1 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		1694F7E9F46C4266BE87C19D /* WordDetailPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailPane.swift; sourceTree = "<group>"; };
 		1B973872EA876366839FB625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1F1355F051612BA7FFA45BEF /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2FDC7220B67C5A5693787A05 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -35,7 +40,10 @@
 		8365D3F511209C88C036446B /* ScoreChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChip.swift; sourceTree = "<group>"; };
 		9104AE760DCC4FDBC57D6109 /* OptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButtonStyle.swift; sourceTree = "<group>"; };
 		936E8EED1F3CB59B078293C4 /* WordEnrichTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEnrichTVApp.swift; sourceTree = "<group>"; };
+		93AEA1BACD870B156FB1A682 /* DictionaryRowButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryRowButtonStyle.swift; sourceTree = "<group>"; };
 		A152C837022175C3A6ADE43D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C983E25EBD53F5DE6F45341A /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
+		D1A81178E39C75C625AED41F /* DictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -43,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				2FDC7220B67C5A5693787A05 /* RootTabView.swift */,
+				974017DEBE96A7183B739C9D /* Dictionary */,
 				309DDB66F064E8D4C18A148D /* Learn */,
 				BD894CCC450E8BD652609E44 /* Placeholder */,
 				EB3A36B7EB47D2F5C29D300F /* Shared */,
@@ -83,6 +92,17 @@
 				003ACDE8B8E6DA8C67CF1910 /* words.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		974017DEBE96A7183B739C9D /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				93AEA1BACD870B156FB1A682 /* DictionaryRowButtonStyle.swift */,
+				C983E25EBD53F5DE6F45341A /* DictionaryView.swift */,
+				D1A81178E39C75C625AED41F /* DictionaryViewModel.swift */,
+				1694F7E9F46C4266BE87C19D /* WordDetailPane.swift */,
+			);
+			path = Dictionary;
 			sourceTree = "<group>";
 		};
 		B3BD5584862617745D6FF996 /* App */ = {
@@ -205,12 +225,16 @@
 			files = (
 				882C16B17580D502B7EB4FC7 /* AppTheme.swift in Sources */,
 				D9D0E68B9191F733BAE87470 /* ComingSoonView.swift in Sources */,
+				173410DF8F0939C917DDC577 /* DictionaryRowButtonStyle.swift in Sources */,
+				3EEA939FA2DFB7167A56C990 /* DictionaryView.swift in Sources */,
+				7E171789A040203F563A1CBA /* DictionaryViewModel.swift in Sources */,
 				455A07F6DAF5A59BF9D54277 /* LearnGameViewModel.swift in Sources */,
 				BA9ADBF98F9836207981E538 /* LearnView.swift in Sources */,
 				69F1E44533FD6F3D6604F1A6 /* OptionButtonStyle.swift in Sources */,
 				CDAD22B3C11926CED9A4969E /* RootTabView.swift in Sources */,
 				64F63D696229161105634123 /* ScoreChip.swift in Sources */,
 				D9803A0141EC7EC5F5EBA75E /* Word.swift in Sources */,
+				D5A81584BF502E58151F9C91 /* WordDetailPane.swift in Sources */,
 				F3321BD81B3F759AD8D66D15 /* WordEnrichTVApp.swift in Sources */,
 				D1DF1E95FDDE7C51BEB99796 /* WordStore.swift in Sources */,
 			);

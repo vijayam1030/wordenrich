@@ -36,12 +36,8 @@ struct RootTabView: View {
             )
             .tabItem { Label("Endure", systemImage: "flame.fill") }
 
-            ComingSoonView(
-                title: "Dictionary",
-                subtitle: "Browse and search the full word list with meanings, synonyms, and origins.",
-                systemImage: "text.book.closed.fill"
-            )
-            .tabItem { Label("Dictionary", systemImage: "text.book.closed.fill") }
+            DictionaryView(store: store)
+                .tabItem { Label("Dictionary", systemImage: "text.book.closed.fill") }
         }
     }
 }

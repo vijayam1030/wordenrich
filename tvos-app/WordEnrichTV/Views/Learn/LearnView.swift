@@ -15,8 +15,10 @@ struct LearnView: View {
         ZStack {
             AppBackground()
 
-            VStack(spacing: 36) {
+            VStack(spacing: 0) {
                 header
+                    .padding(.top, 36)
+                    .padding(.bottom, 18)
 
                 GlassCard {
                     HStack(spacing: 0) {
@@ -28,31 +30,50 @@ struct LearnView: View {
                         Divider().overlay(Color.white.opacity(0.15))
                         ScoreChip(value: "\(viewModel.accuracy)%", label: "Accuracy")
                     }
-                    .padding(.vertical, 26)
+                    .padding(.vertical, 18)
                     .padding(.horizontal, 20)
                 }
                 .frame(maxWidth: 1100)
+                .padding(.bottom, 22)
 
                 if viewModel.hasStarted, let word = viewModel.currentWord {
-                    content(for: word)
+                    ScrollView(showsIndicators: false) {
+                        content(for: word)
+                            .padding(.bottom, 10)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+                    if viewModel.isAnswered {
+                        Button {
+                            viewModel.nextQuestion()
+                        } label: {
+                            Text("Next Word")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .padding(.horizontal, 44)
+                                .padding(.vertical, 14)
+                        }
+                        .buttonStyle(.card)
+                        .tint(AppTheme.periwinkle)
+                        .prefersDefaultFocus(true, in: namespace)
+                        .padding(.top, 14)
+                        .padding(.bottom, 30)
+                    }
                 } else {
                     startPrompt
+                    Spacer(minLength: 0)
                 }
-
-                Spacer(minLength: 0)
             }
-            .padding(.top, 64)
             .padding(.horizontal, 90)
         }
     }
 
     private var header: some View {
-        VStack(spacing: 6) {
+        VStack(spacing: 4) {
             Text("Learn Mode")
-                .font(.system(size: 24, weight: .semibold, design: .rounded))
+                .font(.system(size: 22, weight: .semibold, design: .rounded))
                 .foregroundStyle(AppTheme.gold)
             Text("What does the word mean?")
-                .font(.system(size: 42, weight: .bold, design: .rounded))
+                .font(.system(size: 36, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
         }
     }
@@ -86,12 +107,12 @@ struct LearnView: View {
 
     @ViewBuilder
     private func content(for word: Word) -> some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 24) {
             GlassCard {
                 Text(word.word.capitalized)
-                    .font(.system(size: 56, weight: .heavy, design: .rounded))
+                    .font(.system(size: 50, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
-                    .padding(.vertical, 34)
+                    .padding(.vertical, 28)
                     .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: 1000)
@@ -127,21 +148,21 @@ struct LearnView: View {
     }
 
     private func resultDetail(for word: Word) -> some View {
-        VStack(spacing: 22) {
+        VStack(spacing: 18) {
             HStack(spacing: 16) {
                 Image(systemName: viewModel.isCorrectSelection ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    .font(.system(size: 34))
+                    .font(.system(size: 30))
                     .foregroundStyle(viewModel.isCorrectSelection ? AppTheme.success : AppTheme.failure)
                 Text(viewModel.isCorrectSelection ? "Correct!" : "Not quite")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
                 Spacer()
             }
 
             GlassCard {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 18) {
                     Text(word.meaning)
-                        .font(.system(size: 26, weight: .medium))
+                        .font(.system(size: 24, weight: .medium))
                         .foregroundStyle(.white.opacity(0.95))
 
                     if !word.synonyms.isEmpty {
@@ -151,44 +172,32 @@ struct LearnView: View {
                         labeledChips(title: "Antonyms", items: word.antonyms, tint: AppTheme.failure)
                     }
                     if let sentence = word.sentences.first {
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text("Example".uppercased())
-                                .font(.system(size: 15, weight: .semibold))
+                                .font(.system(size: 14, weight: .semibold))
                                 .tracking(1.1)
                                 .foregroundStyle(.white.opacity(0.5))
                             Text("\u{201C}\(sentence)\u{201D}")
-                                .font(.system(size: 22, weight: .regular))
+                                .font(.system(size: 20, weight: .regular))
                                 .italic()
                                 .foregroundStyle(.white.opacity(0.85))
                         }
                     }
                     if !word.origin.isEmpty {
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text("Origin".uppercased())
-                                .font(.system(size: 15, weight: .semibold))
+                                .font(.system(size: 14, weight: .semibold))
                                 .tracking(1.1)
                                 .foregroundStyle(.white.opacity(0.5))
                             Text(word.origin)
-                                .font(.system(size: 19))
+                                .font(.system(size: 18))
                                 .foregroundStyle(.white.opacity(0.7))
                         }
                     }
                 }
-                .padding(30)
+                .padding(26)
             }
             .frame(maxWidth: 1100)
-
-            Button {
-                viewModel.nextQuestion()
-            } label: {
-                Text("Next Word")
-                    .font(.system(size: 26, weight: .bold, design: .rounded))
-                    .padding(.horizontal, 48)
-                    .padding(.vertical, 16)
-            }
-            .buttonStyle(.card)
-            .tint(AppTheme.periwinkle)
-            .prefersDefaultFocus(true, in: namespace)
         }
         .frame(maxWidth: 1100)
     }
@@ -196,7 +205,7 @@ struct LearnView: View {
     private func labeledChips(title: String, items: [String], tint: Color) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title.uppercased())
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(size: 14, weight: .semibold))
                 .tracking(1.1)
                 .foregroundStyle(.white.opacity(0.5))
             ScrollView(.horizontal, showsIndicators: false) {
